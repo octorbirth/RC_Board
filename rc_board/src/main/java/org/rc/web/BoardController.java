@@ -18,6 +18,7 @@ import lombok.extern.java.Log;
 @RequestMapping("/board/*")
 @Log
 public class BoardController {
+	
 	@Autowired
 	private BoardService service;
 	
@@ -41,8 +42,8 @@ public class BoardController {
 	
 	
 	@GetMapping("/view")
-	public void view() {
-		
+	public void view(Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+		model.addAttribute("board", service.get(bno));
 	}
 	
 	

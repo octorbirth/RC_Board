@@ -18,4 +18,7 @@ public interface BoardMapper {
 	
 	@Select("select count(*) from tbl_board where bno > 0")
 	public int getTotal(Criteria cri);
+	
+	@Select("select * from tbl_board where bno = #{bno}")
+	public BoardDTO findByBno(Long bno);
 }

@@ -8,4 +8,5 @@ import org.rc.dto.Criteria;
 public interface BoardService {
 	public void register(BoardDTO dto);
 	public List<BoardDTO> list(Criteria cri);
+	public BoardDTO get(Long bno);
 }

@@ -27,5 +27,10 @@ public class BoardServiceImpl implements BoardService {
 
 		return mapper.listPage(cri);
 	}
+	@Override
+	public BoardDTO get(Long bno) {
+		return mapper.findByBno(bno);
+	}
+
 
 }

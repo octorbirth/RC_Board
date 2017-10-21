@@ -12,7 +12,7 @@ public class BoardDTO {
 	private String contents;
 	private String writer;
 	private Long replycnt;
-	
+	private Long viewcnt;
 	private Date regdate;
 	private Date updateddate;
 }

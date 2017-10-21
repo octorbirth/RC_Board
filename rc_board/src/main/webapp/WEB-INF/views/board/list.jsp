@@ -35,12 +35,7 @@
 					</h1>
 					<p>A free and fully responsive site template</p>
 					</header>
-					<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu.
-						Proin aliquam facilisis ante interdum congue. Integer mollis, nisl
-						amet convallis, porttitor magna ullamcorper, amet egestas mauris.
-						Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod
-						egestas. Pellentesque sapien ac quam. Lorem ipsum dolor sit
-						nullam.</p>
+					<p>--- 소 개 글 ---</p>
 					<ul class="actions">
 						<li><a href="rc.korea.ac.kr" class="button big">Learn
 								More</a></li>
