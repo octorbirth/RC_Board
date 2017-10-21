@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -41,7 +42,8 @@
 						egestas. Pellentesque sapien ac quam. Lorem ipsum dolor sit
 						nullam.</p>
 					<ul class="actions">
-						<li><a href="#" class="button big">Learn More</a></li>
+						<li><a href="rc.korea.ac.kr" class="button big">Learn
+								More</a></li>
 					</ul>
 				</div>
 				<span class="image object"> <img
@@ -50,8 +52,8 @@
 
 				<hr class="major" />
 				<h2>게시판</h2>
-				<ul class="actions" align = "right">
-					<li><a href="#" class="button special">글 등록</a></li>
+				<ul class="actions" align="right">
+					<li><a href="/board/register" class="button special">글 등록</a></li>
 				</ul>
 				<div class="table-wrapper">
 					<table class="alt">
@@ -59,44 +61,25 @@
 							<tr>
 								<th>번호</th>
 								<th>제목</th>
-								<th>내용</th>
-								<th>조회수</th>
+								<th>작성자</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Item1</td>
-								<td>Ante turpis integer aliquet porttitor.</td>
-								<td>29.99</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Item2</td>
-								<td>Vis ac commodo adipiscing arcu aliquet.</td>
-								<td>19.99</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Item3</td>
-								<td>Morbi faucibus arcu accumsan lorem.</td>
-								<td>29.99</td>
-							</tr>
+							<c:forEach var="item" items="${list}">
+								<tr>
+									<td>${item.bno}</td>
+									<td><a href='view?bno=${item.bno}&page=${cri.page}'>${item.title}</td>
+									<td>${item.writer}</td>
+								</tr>
+							</c:forEach>
 
 						</tbody>
 					</table>
 				</div>
 				<center>
 					<ul class="pagination">
-						<li><span class="button disabled">Prev</span></li>
-						<li><a href="#" class="page active">1</a></li>
-						<li><a href="#" class="page">2</a></li>
-						<li><a href="#" class="page">3</a></li>
-
-						<li><a href="#" class="page">8</a></li>
-						<li><a href="#" class="page">9</a></li>
-						<li><a href="#" class="page">10</a></li>
-						<li><a href="#" class="button">Next</a></li>
+						
+						
 					</ul>
 				</center>
 
@@ -153,11 +136,43 @@
 
 	</div>
 
+
 	<!-- Scripts -->
 	<script src="/resources/assets/js/jquery.min.js"></script>
 	<script src="/resources/assets/js/skel.min.js"></script>
 	<script src="/resources/assets/js/util.js"></script>
 	<script src="/resources/assets/js/main.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		crossorigin="anonymous"></script>
+
+	<script src="/resources/js/pagemaker.js"></script>
+	<script>
+		var msg = '${result}';
+		if (msg === 'success') {
+			alert("작업처리 완료");
+		}else if(msg === 'delsuccess'){
+			alert("삭제 되었습니다.");
+		}
+
+		$(".pagination").on("click", "li", function(e){
+			e.preventDefault();
+			var pageNum = $(this).attr('data-page');
+			console.log(pageNum);
+			self.location="/board/list?page="+pageNum;
+			
+		});
+		
+		var pageStr = makePage({
+			total:${cri.total},
+	        current:${cri.page},
+	        pageSize:10
+	    });
+		
+		$(".pagination").html(pageStr);
+		
+	</script>
 
 </body>
 </html>

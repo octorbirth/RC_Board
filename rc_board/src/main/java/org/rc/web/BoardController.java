@@ -1,5 +1,9 @@
 package org.rc.web;
 
+import org.rc.dto.BoardDTO;
+import org.rc.dto.Criteria;
+import org.rc.service.BoardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,14 +18,25 @@ import lombok.extern.java.Log;
 @RequestMapping("/board/*")
 @Log
 public class BoardController {
+	@Autowired
+	private BoardService service;
+	
 	@GetMapping("/list")
-	public void list() {
-			
+	public void list(Model model, @ModelAttribute("cri") Criteria cri) {
+		model.addAttribute("list", service.list(cri));
 	}
 	
 	@GetMapping("/register")
 	public void registerGet() {
 
+	}
+	
+	@PostMapping("/register")
+	public String register(BoardDTO dto, RedirectAttributes rttr) {
+		
+		service.register(dto);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:/board/list";
 	}
 	
 	
