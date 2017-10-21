@@ -142,7 +142,7 @@
 		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 		crossorigin="anonymous"></script>
 
-	<script src="/resources/js/pagemaker.js"></script>
+	<script src="/resources/js/pagefunc.js"></script>
 	<script>
 		var msg = '${result}';
 		if (msg === 'success') {
@@ -154,9 +154,9 @@
 		$(".pagination").on("click", "li", function(e){
 			e.preventDefault();
 			var pageNum = $(this).attr('data-page');
-			console.log(pageNum);
-			self.location="/board/list?page="+pageNum;
-			
+			if($(this).attr('data-page') !== 'none') {
+				self.location="/board/list?page="+pageNum;
+			}
 		});
 		
 		var pageStr = makePage({

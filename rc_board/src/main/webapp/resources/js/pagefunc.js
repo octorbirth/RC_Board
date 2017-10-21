@@ -22,7 +22,7 @@ function makePage(param){
         if(prev != 0){
             str += ptag.replace("disabled","").replace("$$page", prev);
         }else{
-        	str += ptag.replace("$$page", "");
+        	str += ptag.replace("$$page", "none");
         }
 
         for(var i = startNum; i <= realEnd; i++ ){
@@ -38,7 +38,7 @@ function makePage(param){
         if(next != 0){
             str += ntag.replace("disabled","").replace("$$page", next);
         }else{
-        	str += ntag.replace("$$page", "");
+        	str += ntag.replace("$$page", "none");
         }
         
         return str;

@@ -21,4 +21,10 @@ public interface BoardMapper {
 	
 	@Select("select * from tbl_board where bno = #{bno}")
 	public BoardDTO findByBno(Long bno);
+	
+	@Update("update tbl_board set title = #{title}, contents= #{contents} where bno = #{bno}")
+	public void update(BoardDTO dto);
+	
+	@Delete("delete from tbl_board where bno = #{bno}")
+	public void remove(Long bno);
 }
