@@ -52,8 +52,8 @@ header.main>:last-child {
 
 <ul class="actions" align="right">
 	<li><a href="#" data-oper='del' class="button btn Default">삭제</a></li>
-	<li><a href="#" data-oper='li' class="button btn special">취소</a></li>
 	<li><a href="#" data-oper='mod' class="button btn special">완료</a></li>
+	<li><a href="#" data-oper='li' class="button btn special">리스트</a></li>
 </ul>
 
 <%@include file="/WEB-INF/views/include/bootstrap/footer.jsp"%>

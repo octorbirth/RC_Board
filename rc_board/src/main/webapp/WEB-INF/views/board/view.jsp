@@ -16,8 +16,8 @@ textarea {
 }
 
 img {
-	width: 64px;
-	height: 64px;
+	width: 50px;
+	height: 50px;
 }
 
 .fr {
@@ -84,25 +84,8 @@ img {
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
 
-
-<div class="media">
-  <img class="d-flex mr-3" src="https://wiki.teamfortress.com/w/images/archive/f/f3/20110511230117%21User_Melibar_Awesome_face.png?t=20110511221626" alt="Generic placeholder image">
-  <div class="media-body">
-    <h5 class="mt-0">Media heading</h5>
-    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-    <div class="media mt-3">
-      <a class="d-flex pr-3" href="#">
-        <img src="https://wiki.teamfortress.com/w/images/archive/f/f3/20110511230117%21User_Melibar_Awesome_face.png?t=20110511221626" alt="Generic placeholder image">
-      </a>
-      <div class="media-body">
-        <h5 class="mt-0">Media heading</h5>
-        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-      </div>
-    </div>
-  </div>
+<div class='replyDiv'>  
 </div>
-
 
 <%@include file="/WEB-INF/views/include/bootstrap/footer.jsp"%>
 
@@ -128,4 +111,48 @@ img {
 			actionForm.append("<input type='hidden' name='bno' value='${board.bno}'>");
 			actionForm.attr("action", "/board/modify").submit();
 		});
+		
+		function getReplies(){
+		      var str = "";
+		      $.getJSON("/reply/list/" + ${board.bno}, function(arr){
+		            for(var i=0; i< arr.length; i++){
+		            	
+		            	if(arr[i].rno === arr[i].gno){ // 댓글인 경우
+		            		str += " <div class='media'> ";
+		            		str += " <img class='d-flex mr-3' src='#' alt='" + arr[i].replyer +" '> ";
+		            		str += " <div class='media-body'> "
+		            		str += " <h5 class='mt-0'>" + arr[i].replyer + "</h5> " + arr[i].reply;
+		            		
+		            		// 답글이 하나도 없는 댓글을 위한 조취
+		            		if( (i+1) === arr.length){ // 마지막 댓글이자 답글이 없는 상태
+		            			str += " </div></div> ";
+		            			
+		            		}else{ // 아직 보여줄 댓글or답글이 남아 있다면 
+		            			if(arr[i+1].rno === arr[i+1].gno){ // 새로운 댓글인지 답글인지 판단
+		            				str += " </div></div> ";
+		            			}
+		            		}
+		            	}else{ // 답글인 경우
+		            		str +=" <div class='media mt-3'> ";
+		            		str +=" <a class='d-flex pr-3' href='#'> ";
+		            		str +=" <img src='#' alt='"  +arr[i].replyer +"'> ";
+		            		str +=" </a> ";
+		            		str +=" <div class='media-body'> ";
+		            		str +=" <h5 class='mt-0'>"+ arr[i].replyer +"</h5> " + arr[i].reply;
+		            		str +=" </div></div> ";
+		            		
+		            		if( (i+1) === arr.length ){ // 마지막 댓글에서 마지막 답글인 경우
+		            			str +=" </div></div> "; // 댓글을 끝낸다.
+		            		}else{ // 아직 보여줄 댓글or답글이 남아 있다면 
+		            			if(arr[i+1].rno === arr[i+1].gno){ // 다음 글이 댓글인경우
+		            				str += " </div></div> ";
+		            			}
+		            			// 다음에 가져올 글이 답글이면 상위의 for문을 진행
+		            		}
+		            	} 
+		            }
+		            $(".replyDiv").html(str);
+		      });
+		 }
+		 getReplies();
 </script>
