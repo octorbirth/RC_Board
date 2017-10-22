@@ -81,11 +81,14 @@ img {
 <hr>
 <h2>댓글</h2>
 <div class="12u$">
-	<textarea name="demo-message" id="demo-message"
+	<textarea id ='replyBox' name="reply" id="demo-message"
 		placeholder="Enter your contents" rows="3" style="resize:none"></textarea>
+	<input id ='replyer' type='hidden' name='replyer' value='tester'>
+	<input id ='replyBno' type='hidden' name='bno' value='${board.bno} '>
 </div>
 <ul class="actions mt" align="right">
-	<li><a href="#" class="button special">댓글 달기</a></li>
+	
+	<li><a href="#" class="replyBtn button special">댓글 달기</a></li>
 </ul>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -198,5 +201,22 @@ img {
 	    	console.log("textarea 값1 :" + temp);
 	    	rereTa.val("");
 	    });
+	    
+	    $(".replyBtn").click(function(e){
+	    	e.preventDefault(); 
+	    	var data = {reply:$("#replyBox").val(), replyer:$("#replyer").val(), bno:$("#replyBno").val()} // json으로 처리
+	          
+	          $.ajax({ 
+	        	  url:'/reply/new',
+	              type:'POST',
+	              contentType: "application/json; charset=utf-8",
+	              data:JSON.stringify(data), 
+	              success: function(result){
+	                  alert("success");
+	                  getReplies();
+	              }
+	          })
+	      });
+
 		 
 </script>

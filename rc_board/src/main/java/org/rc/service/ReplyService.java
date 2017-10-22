@@ -8,4 +8,6 @@ import org.rc.dto.ReplyDTO;
 public interface ReplyService {
 	
 	public List<ReplyDTO> getListReply(ReplyDTO dto);
+	public void reRegister(ReplyDTO dto);
+	public void reUpdate();
 }

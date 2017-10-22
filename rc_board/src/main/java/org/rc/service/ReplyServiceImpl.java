@@ -19,6 +19,15 @@ public class ReplyServiceImpl implements ReplyService {
         return mapper.listReply(dto);
     }
 
+	 @Override
+	 public void reRegister(ReplyDTO dto) {
+	        mapper.reinsert(dto);
+	 }
+	 @Override
+	 public void reUpdate() {
+	        mapper.reupdate();
+	 }
+
 
 
 }

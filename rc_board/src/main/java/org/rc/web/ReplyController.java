@@ -33,6 +33,16 @@ public class ReplyController {
 		dto.setBno(bno);
 		return service.getListReply(dto);
     }
+	
+	@PostMapping("/new")
+    public void addReply(@RequestBody ReplyDTO dto) {
+//      log.info("===============");
+//		log.info("" + dto);
+//		log.info("===============");
+		service.reRegister(dto);
+		service.reUpdate();
+    }
+
 
 
 
