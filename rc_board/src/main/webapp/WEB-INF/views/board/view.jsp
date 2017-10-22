@@ -135,7 +135,7 @@ img {
 		            		str += " <img class='d-flex mr-3' src='#' alt='" + arr[i].replyer +" '> ";
 		            		str += " <div class='media-body'> "
 		            		str += " <h5 class='mt-0'>" + arr[i].replyer + "</h5> ";
-		            		str += " <span class='fr'> <a href='#'>삭제</a> | <a href='#'>수정</a></span>"
+		            		str += " <span class='fr'> <a href='#' id='delRe' data-rno='"+arr[i].rno+"'>삭제</a> | <a href='#'>수정</a></span>"
 		            		str += " <span>"+ arr[i].reply +"</span>";
 		            		str += " <div><a data-rno='"+arr[i].rno+"' class='btn-box' href='#'>답글입력</a></div>"
 		            		str += "<div class='hide reply-box' data-rno='"+arr[i].rno+"'>";
@@ -163,7 +163,7 @@ img {
 		            		str +=" </a> ";
 		            		str +=" <div class='media-body'> ";
 		            		str +=" <h5 class='mt-0'>"+ arr[i].replyer +"</h5> ";
-		            		str +=" <span class='fr'> <a href='#'>삭제</a> | <a href='#'>수정</a></span>"
+		            		str +=" <span class='fr'> <a href='#' id='delRe' data-rno='"+arr[i].rno+"'>삭제</a> | <a href='#'>수정</a></span>"
 		            		str += " <span>"+ arr[i].reply +"</span>";
 		            		str +=" </div></div> ";
 		            		
@@ -211,7 +211,7 @@ img {
 	          })
 	    });
 	    
-	    $(".replyBtn").click(function(e){
+	    $(".replyDiv").on("click", ".replyBtn", function(e){
 	    	e.preventDefault(); 
 	    	var data = {reply:$("#replyBox").val(), replyer:$("#replyer").val(), bno:$("#replyBno").val()} // json으로 처리
 	          
@@ -225,6 +225,19 @@ img {
 	                  getReplies();
 	              }
 	          })
+	      });
+	    $(".replyDiv").on("click", "#delRe", function(e){
+	    	e.preventDefault(); 
+	    	 var rno = $(this).attr("data-rno");
+	         
+	         $.ajax({
+	             url:'/reply/' + rno,
+	             type: 'DELETE',
+	             success: function(result){
+	                 alert("success");
+	                 getReplies(); // 바로 적용되도록
+	             }
+	         });
 	      });
 
 		 

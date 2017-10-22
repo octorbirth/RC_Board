@@ -23,4 +23,8 @@ public interface ReplyMapper {
 	@Insert ("insert into tbl_reply (reply, replyer, gno, bno) values (#{reply}, #{replyer}, #{gno}, #{bno})" )
 	public void rereinsert(ReplyDTO dto);
 	
+	@Delete("delete from tbl_reply where rno = #{rno}")
+    public void delete(Integer rno);
+
+	
 }

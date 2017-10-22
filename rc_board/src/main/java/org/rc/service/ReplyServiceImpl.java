@@ -31,8 +31,13 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	public void rereRegister(ReplyDTO dto) {
 			mapper.rereinsert(dto);
-		
 	}
+	
+	@Override
+    public void remove(Integer rno) {
+        mapper.delete(rno);  
+    }
+
 
 
 
