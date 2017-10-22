@@ -135,8 +135,8 @@ img {
 		            		str += " <img class='d-flex mr-3' src='#' alt='" + arr[i].replyer +" '> ";
 		            		str += " <div class='media-body'> "
 		            		str += " <h5 class='mt-0'>" + arr[i].replyer + "</h5> ";
-		            		str += " <span class='fr'> <a href='#' id='delRe' data-rno='"+arr[i].rno+"'>삭제</a> | <a href='#'>수정</a></span>"
-		            		str += " <span>"+ arr[i].reply +"</span>";
+		            		str += " <span class='fr'> <a href='#' id='delRe' data-rno='"+arr[i].rno+"'>삭제</a> | <a href='#' id='modRe' data-rno='"+arr[i].rno+"'>수정</a></span>"
+		            		str += " <span data-rno='"+arr[i].rno+"' data-target='modTarget' >"+ arr[i].reply +"</span>";
 		            		str += " <div><a data-rno='"+arr[i].rno+"' class='btn-box' href='#'>답글입력</a></div>"
 		            		str += "<div class='hide reply-box' data-rno='"+arr[i].rno+"'>";
 		            		str += "<div class='row' >";
@@ -163,8 +163,8 @@ img {
 		            		str +=" </a> ";
 		            		str +=" <div class='media-body'> ";
 		            		str +=" <h5 class='mt-0'>"+ arr[i].replyer +"</h5> ";
-		            		str +=" <span class='fr'> <a href='#' id='delRe' data-rno='"+arr[i].rno+"'>삭제</a> | <a href='#'>수정</a></span>"
-		            		str += " <span>"+ arr[i].reply +"</span>";
+		            		str +=" <span class='fr'> <a href='#' id='delRe' data-rno='"+arr[i].rno+"'>삭제</a> | <a href='#' id='modRe' data-rno='"+arr[i].rno+"'>수정</a></span>"
+		            		str += " <span data-rno='"+arr[i].rno+"' data-target='modTarget'>"+ arr[i].reply +"</span>";
 		            		str +=" </div></div> ";
 		            		
 		            		if( (i+1) === arr.length ){ // 마지막 댓글에서 마지막 답글인 경우
@@ -182,7 +182,22 @@ img {
 		 }
 		 getReplies();
 		 
-		
+		 $(".replyBtn").on("click", function(e){
+		    	e.preventDefault(); 
+		    	var data = {reply:$("#replyBox").val(), replyer:$("#replyer").val(), bno:$("#replyBno").val()} // json으로 처리
+		        $("#replyBox").val(""); 
+		          $.ajax({ 
+		        	  url:'/reply/new',
+		              type:'POST',
+		              contentType: "application/json; charset=utf-8",
+		              data:JSON.stringify(data), 
+		              success: function(result){
+		                  alert("success");
+		                  getReplies();
+		              }
+		          })
+		});
+		 
 	    $(".replyDiv").on("click", ".btn-box", function(e){
 	        e.preventDefault();
 	        $(this).addClass('hide');
@@ -211,34 +226,51 @@ img {
 	          })
 	    });
 	    
-	    $(".replyDiv").on("click", ".replyBtn", function(e){
-	    	e.preventDefault(); 
-	    	var data = {reply:$("#replyBox").val(), replyer:$("#replyer").val(), bno:$("#replyBno").val()} // json으로 처리
-	          
-	          $.ajax({ 
-	        	  url:'/reply/new',
-	              type:'POST',
-	              contentType: "application/json; charset=utf-8",
-	              data:JSON.stringify(data), 
-	              success: function(result){
-	                  alert("success");
-	                  getReplies();
-	              }
-	          })
-	      });
+	    
 	    $(".replyDiv").on("click", "#delRe", function(e){
 	    	e.preventDefault(); 
-	    	 var rno = $(this).attr("data-rno");
+	    	var rno = $(this).attr("data-rno");
 	         
-	         $.ajax({
-	             url:'/reply/' + rno,
-	             type: 'DELETE',
-	             success: function(result){
-	                 alert("success");
-	                 getReplies(); // 바로 적용되도록
-	             }
-	         });
+	       $.ajax({
+	           url:'/reply/' + rno,
+	           type: 'DELETE',
+	           success: function(result){
+	               alert("success");
+	               getReplies(); // 바로 적용되도록
+	           }
+	       });
 	      });
+	    $(".replyDiv").on("click", "#modRe", function(e){
+	    	e.preventDefault();
+	    	
+	    	var rno = $(this).attr("data-rno");
+	    	$(this).replaceWith("<a href='#' id='clearMod' data-rno='"+rno+"'>수정완료</a>");
+	    	var target = $("span[data-target='modTarget'][data-rno='"+rno+"']");
+	    	var reply = target.text();
+	    	target.replaceWith("<textarea data-target='modTarget' data-rno='"+ rno +"'>"+ reply +" </textarea>");
+	    });
+	    
+	    $(".replyDiv").on("click", "#clearMod", function(e){
+	    	e.preventDefault();
+	    	var rno = $(this).attr("data-rno");
+	    	$(this).replaceWith("<a href='#' id='modRe' data-rno='"+rno+"'>수정</a>");
+	    	var target = $("textarea[data-target='modTarget'][data-rno='"+rno+"']");
+	    	var reply = target.val();
+	    	target.replaceWith("<span data-rno='"+rno+"' data-target='modTarget'>"+ reply +"</span>");
+	    	// DB에 값을 변경하고 다시 불러 오지는 않겠다. 새로 고침하기 이전에 보이는 값을 이미 수정된 값으로 front 단에서 처리했기 때문이다.
+	    	
+	    	var data = {reply : reply}
+	    	
+	    	$.ajax({
+	            url:'/reply/' + rno,
+	            type: 'PUT',
+	            contentType: "application/json; charset=utf-8",
+	            data:JSON.stringify(data),
+	            success: function(result){
+	                alert("success");
+	            }
+	        });
 
-		 
+	    });
+	    
 </script>

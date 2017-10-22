@@ -26,5 +26,8 @@ public interface ReplyMapper {
 	@Delete("delete from tbl_reply where rno = #{rno}")
     public void delete(Integer rno);
 
+	@Update("update tbl_reply set reply=#{reply} where rno= #{rno}")
+    public void update(ReplyDTO dto);
+
 	
 }

@@ -12,4 +12,5 @@ public interface ReplyService {
 	public void reUpdate();
 	public void rereRegister(ReplyDTO dto);
 	public void remove(Integer rno);
+	public void update(ReplyDTO dto);
 }

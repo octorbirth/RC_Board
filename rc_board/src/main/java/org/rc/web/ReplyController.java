@@ -59,6 +59,13 @@ public class ReplyController {
         return new ResponseEntity<String>("removed",HttpStatus.OK);
     }
 
+	@PutMapping("/{rno}")
+    public ResponseEntity<String> updateReply(@PathVariable("rno") Integer rno, @RequestBody ReplyDTO dto){
+        dto.setRno(rno);
+        log.info("Update rno: " + rno);
+        service.update(dto);
+        return new ResponseEntity<String>("update",HttpStatus.OK);
+    }
 
 
 
