@@ -15,6 +15,7 @@ public class BoardDTO {
 	private Long viewcnt;
 	private Date regdate;
 	private Date updateddate;
+	private String[] ufile;
 }
 
 //create table tbl_board (

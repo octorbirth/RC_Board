@@ -25,11 +25,15 @@ public class BoardServiceImpl implements BoardService {
 	private AttachMapper attachMapper;
 	
 	@Override
-	public void register(BoardDTO dto, String[] ufiles) {
+	public void register(BoardDTO dto) {
 		mapper.insert(dto);
-		Arrays.stream(ufiles).forEach((fname)->{
-			attachMapper.insert(fname);
-		});
+		String[] ufiles = dto.getUfile();
+		if(ufiles != null) {
+			Arrays.stream(ufiles).forEach((fname)->{
+				attachMapper.insert(fname);
+			});
+		}
+			
 	}
 	@Override
 	public List<BoardDTO> list(Criteria cri) {

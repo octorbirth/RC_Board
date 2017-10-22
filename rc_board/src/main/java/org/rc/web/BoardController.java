@@ -36,9 +36,8 @@ public class BoardController {
 	}
 	
 	@PostMapping("/register")
-	public String register(BoardDTO dto, @RequestParam("ufile") String[] ufiles ,RedirectAttributes rttr) {
-		log.info(Arrays.toString(ufiles));
-		service.register(dto, ufiles);
+	public String register(BoardDTO dto, RedirectAttributes rttr) {
+		service.register(dto);
 		rttr.addFlashAttribute("result", "success");
 		return "redirect:/board/list";
 	}

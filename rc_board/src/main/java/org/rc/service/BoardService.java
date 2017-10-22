@@ -6,7 +6,7 @@ import org.rc.dto.BoardDTO;
 import org.rc.dto.Criteria;
 
 public interface BoardService {
-	public void register(BoardDTO dto, String[] ufiles);
+	public void register(BoardDTO dto);
 	public List<BoardDTO> list(Criteria cri);
 	public BoardDTO get(Long bno);
 	public void remove(Long bno);

@@ -53,6 +53,8 @@ public class UploadController {
         return map;
         
     }
+	
+	
 	@GetMapping("/thumb/{thumbName:.+}")
     public @ResponseBody byte[] display(@PathVariable("thumbName") String thumbName) throws Exception {
         File file = new File("C:\\zzz\\" + thumbName);

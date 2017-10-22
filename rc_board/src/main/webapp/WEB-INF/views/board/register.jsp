@@ -102,7 +102,7 @@ $(document).ready(function () {
 				
 				var fileName = $(this).attr("data-file");
 				
-				var str = "<input type='hidden' name='ufile' value='"+fileName+"'>";
+				var str = "<input type='hidden' name='ufile["+ idx +"]' value='"+fileName+"'>";
 				
 				$("#mainForm").append(str);
 			});
