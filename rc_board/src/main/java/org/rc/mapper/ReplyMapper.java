@@ -19,5 +19,8 @@ public interface ReplyMapper {
 	
 	@Update ("update tbl_reply set gno=last_insert_id() where rno = last_insert_id()")
 	public void reupdate();
+
+	@Insert ("insert into tbl_reply (reply, replyer, gno, bno) values (#{reply}, #{replyer}, #{gno}, #{bno})" )
+	public void rereinsert(ReplyDTO dto);
 	
 }

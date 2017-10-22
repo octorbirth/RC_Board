@@ -10,4 +10,5 @@ public interface ReplyService {
 	public List<ReplyDTO> getListReply(ReplyDTO dto);
 	public void reRegister(ReplyDTO dto);
 	public void reUpdate();
+	public void rereRegister(ReplyDTO dto);
 }

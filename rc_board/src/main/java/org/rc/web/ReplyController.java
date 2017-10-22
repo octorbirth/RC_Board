@@ -42,6 +42,14 @@ public class ReplyController {
 		service.reRegister(dto);
 		service.reUpdate();
     }
+	@PostMapping("/renew")
+    public void addreReply(@RequestBody ReplyDTO dto) {
+//      log.info("===============");
+//		log.info("" + dto);
+//		log.info("===============");
+		service.rereRegister(dto);
+		
+    }
 
 
 

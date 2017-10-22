@@ -193,13 +193,22 @@ img {
 	    });
 	    
 	    $(".replyDiv").on("click", ".rere-btn", function(e){
+	    	var rno = $(this).attr("data-rno"); // gno 값이 된다.
+	    	var rereTa = $(".rere-textarea[data-rno='" + rno + "']"); 
+	    	var temp = rereTa.val(); // reply
+	    	rereTa.val(""); // 댓글에서 하지 않았던 리셋(답글에서는 적용)
+	    	var data = {reply : temp, replyer:$("#replyer").val(), bno:$("#replyBno").val(), gno: rno} // json으로 처리
 	    	
-	    	var rno = $(this).attr("data-rno");
-	    	console.log("답글달기 버튼 입력 : " + rno);
-	    	var rereTa = $(".rere-textarea[data-rno='" + rno + "']");
-	    	var temp = rereTa.val();
-	    	console.log("textarea 값1 :" + temp);
-	    	rereTa.val("");
+	    	$.ajax({ 
+	        	  url:'/reply/renew',
+	              type:'POST',
+	              contentType: "application/json; charset=utf-8",
+	              data:JSON.stringify(data), 
+	              success: function(result){
+	                  alert("success");
+	                  getReplies();
+	              }
+	          })
 	    });
 	    
 	    $(".replyBtn").click(function(e){

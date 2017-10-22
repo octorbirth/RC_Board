@@ -28,6 +28,12 @@ public class ReplyServiceImpl implements ReplyService {
 	        mapper.reupdate();
 	 }
 
+	@Override
+	public void rereRegister(ReplyDTO dto) {
+			mapper.rereinsert(dto);
+		
+	}
+
 
 
 }
