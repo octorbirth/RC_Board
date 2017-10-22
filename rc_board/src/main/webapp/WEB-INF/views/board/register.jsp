@@ -14,6 +14,25 @@ header.main>:last-child {
 textarea {
     resize: none;
 }
+ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+li {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    display: inline-block;
+}
+.delImg{
+    padding-left: 0.5em;
+    cursor: pointer;
+}
+.imglist{
+	font-size: 1.2em;
+}
 </style>
 
 <header class="main"> <br>
@@ -38,13 +57,19 @@ textarea {
 
 </form>
 
+<h2>파일 : </h2>
+<div class='uploadDiv'>
+  <form id='uploadForm'>
+    <input id='uploadFile' type='file' name='file'>
+    <input type='submit' class="button icon fa-upload" value='업로드'>
+  </form>
+</div>
 
 <div class="mt">
-	<ul class="actions">
-		<li><a href="#" class="button icon fa-upload">파일첨부</a></li>
-	</ul>
 	<div class="box">
-		이미지 파일 목록
+		<ul class='imgList'> 
+    	</ul>
+
 	</div>
 	<div class="box">
 		일반 파일 목록
@@ -72,6 +97,34 @@ $(document).ready(function () {
 	});
 	
 });
+$("#uploadForm").on("submit", function(e){
+    e.preventDefault(); // form 태그 기능 막기
+    
+    var formData = new FormData();
+    formData.append("file", $("#uploadFile")[0].files[0]);
+    
+    $.ajax({
+      url: '/upload/',
+      data: formData,
+      dataType:'json',
+      processData: false,
+      contentType: false,
+      type: 'POST',
+      success: function(data){
+          var str = "";
+          str ="<li data-file='" + data.uploadName  +"'><div>";
+          str += "<img src='/upload/thumb/"+data.thumbName+"'></div>";
+          str += "<center><span class='imglist'>" + data.original+"</sapn>";
+          str += "<span class='delImg imglist' aria-hidden='true'>&times;</span></center>";
+          str += "</li>";
+          $(".imgList").append(str);
+
+      }
+    });
+
+});
+
+
 </script>
 
 
