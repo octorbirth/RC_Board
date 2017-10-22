@@ -40,7 +40,7 @@ li {
 </header>
 
 <form method='post' id='mainForm'>
-<input type='hidden' name='writer' value = "tempName">
+<input type='hidden' name='writer' value ="tempName">
 <h2>제목 : </h2>
 <div class="12u$(xsmall)">
 	<input type="text" name="title" id="demo-name" value=""
@@ -93,39 +93,57 @@ $(document).ready(function () {
 	
 	$("#createBoard").on("click",function(e){
 		e.preventDefault();
-		mainForm.submit();
+		
+		var title = mainForm.find("input[name='title']").val();
+		if(title.length === 0){
+			alert("제목을 입력하세요!")
+		}else{
+			$(".imgList li").each(function(idx){
+				
+				var fileName = $(this).attr("data-file");
+				
+				var str = "<input type='hidden' name='ufile' value='"+fileName+"'>";
+				
+				$("#mainForm").append(str);
+			});
+			
+			mainForm.submit();
+		}
+		
+	});
+	
+	$("#uploadForm").on("submit", function(e){
+	    e.preventDefault(); // form 태그 기능 막기
+	    
+	    var formData = new FormData();
+	    formData.append("file", $("#uploadFile")[0].files[0]);
+	    
+	    $.ajax({
+	      url: '/upload/',
+	      data: formData,
+	      dataType:'json',
+	      processData: false,
+	      contentType: false,
+	      type: 'POST',
+	      success: function(data){
+	          var str = "";
+	          str ="<li data-file='" + data.uploadName  +"'><div>";
+	          str += "<img src='/upload/thumb/"+data.thumbName+"'></div>";
+	          str += "<center><span class='imglist'>" + data.original+"</sapn>";
+	          str += "<span class='delImg imglist' aria-hidden='true'>&times;</span></center>";
+	          str += "</li>";
+	          $(".imgList").append(str);
+
+	      }
+	    });
+
 	});
 	
 });
-$("#uploadForm").on("submit", function(e){
-    e.preventDefault(); // form 태그 기능 막기
-    
-    var formData = new FormData();
-    formData.append("file", $("#uploadFile")[0].files[0]);
-    
-    $.ajax({
-      url: '/upload/',
-      data: formData,
-      dataType:'json',
-      processData: false,
-      contentType: false,
-      type: 'POST',
-      success: function(data){
-          var str = "";
-          str ="<li data-file='" + data.uploadName  +"'><div>";
-          str += "<img src='/upload/thumb/"+data.thumbName+"'></div>";
-          str += "<center><span class='imglist'>" + data.original+"</sapn>";
-          str += "<span class='delImg imglist' aria-hidden='true'>&times;</span></center>";
-          str += "</li>";
-          $(".imgList").append(str);
 
-      }
-    });
-
-});
 
 
 </script>
 
 
-	<%@include file="/WEB-INF/views/include/bootstrap/footer.jsp"%>
+<%@include file="/WEB-INF/views/include/bootstrap/footer.jsp"%>

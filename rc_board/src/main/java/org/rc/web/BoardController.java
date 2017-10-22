@@ -1,5 +1,7 @@
 package org.rc.web;
 
+import java.util.Arrays;
+
 import org.rc.dto.BoardDTO;
 import org.rc.dto.Criteria;
 import org.rc.service.BoardService;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.extern.java.Log;
@@ -33,9 +36,9 @@ public class BoardController {
 	}
 	
 	@PostMapping("/register")
-	public String register(BoardDTO dto, RedirectAttributes rttr) {
-		
-		service.register(dto);
+	public String register(BoardDTO dto, @RequestParam("ufile") String[] ufiles ,RedirectAttributes rttr) {
+		log.info(Arrays.toString(ufiles));
+		service.register(dto, ufiles);
 		rttr.addFlashAttribute("result", "success");
 		return "redirect:/board/list";
 	}

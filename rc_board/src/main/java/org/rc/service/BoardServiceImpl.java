@@ -1,12 +1,16 @@
 package org.rc.service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
 import org.rc.dto.BoardDTO;
 import org.rc.dto.Criteria;
+import org.rc.mapper.AttachMapper;
 import org.rc.mapper.BoardMapper;
 import org.springframework.stereotype.Service;
+
+
 
 import lombok.extern.java.Log;
 
@@ -17,9 +21,15 @@ public class BoardServiceImpl implements BoardService {
 	@Inject
 	private BoardMapper mapper;
 
+	@Inject
+	private AttachMapper attachMapper;
+	
 	@Override
-	public void register(BoardDTO dto) {
+	public void register(BoardDTO dto, String[] ufiles) {
 		mapper.insert(dto);
+		Arrays.stream(ufiles).forEach((fname)->{
+			attachMapper.insert(fname);
+		});
 	}
 	@Override
 	public List<BoardDTO> list(Criteria cri) {
