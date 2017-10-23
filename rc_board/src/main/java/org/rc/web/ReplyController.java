@@ -54,7 +54,6 @@ public class ReplyController {
 	@DeleteMapping("/{rno}")
     public ResponseEntity<String> removeReply(@PathVariable("rno") Integer rno){
         // 결과값을 보여주기 위해서 responseEntity를 이용
-        log.info("Remove rno: " + rno);
         service.remove(rno);
         return new ResponseEntity<String>("removed",HttpStatus.OK);
     }

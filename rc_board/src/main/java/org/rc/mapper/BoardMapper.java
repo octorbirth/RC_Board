@@ -11,7 +11,7 @@ import org.rc.dto.Criteria;
 
 public interface BoardMapper {
 
-	@Insert("insert into tbl_board (title, contents, writer) values (#{title}, #{contents}, #{writer})")
+	@Insert("insert into tbl_board (title, contents, writer, isfile, isimg) values (#{title}, #{contents}, #{writer}, #{isfile}, #{isimg})")
 	public void insert(BoardDTO dto);
 
 	public List<BoardDTO> listPage(Criteria Cri);
@@ -22,7 +22,7 @@ public interface BoardMapper {
 	@Select("select * from tbl_board where bno = #{bno}")
 	public BoardDTO findByBno(Long bno);
 	
-	@Update("update tbl_board set title = #{title}, contents= #{contents} where bno = #{bno}")
+	@Update("update tbl_board set title = #{title}, contents= #{contents}, isimg = #{isimg}, isfile = #{isfile}  where bno = #{bno}")
 	public void update(BoardDTO dto);
 	
 	@Delete("delete from tbl_board where bno = #{bno}")

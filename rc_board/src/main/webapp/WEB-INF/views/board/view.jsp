@@ -197,9 +197,13 @@ $.getJSON("/upload/list/" + ${board.bno}, function(arr){
 		            		str += " <img class='d-flex mr-3' src='#' alt='" + arr[i].replyer +" '> ";
 		            		str += " <div class='media-body'> "
 		            		str += " <h5 class='mt-0'>" + arr[i].replyer + "</h5> ";
-		            		str += " <span class='fr'> <a href='#' id='delRe' data-rno='"+arr[i].rno+"'>삭제</a> | <a href='#' id='modRe' data-rno='"+arr[i].rno+"'>수정</a></span>"
+		            		if(arr[i].garbage === 'n'){
+		            			str += " <span class='fr'> <a href='#' id='delRe' data-rno='"+arr[i].rno+"'>삭제</a> | <a href='#' id='modRe' data-rno='"+arr[i].rno+"'>수정</a></span>"	
+		            		}
 		            		str += " <span data-rno='"+arr[i].rno+"' data-target='modTarget' >"+ arr[i].reply +"</span>";
-		            		str += " <div><a data-rno='"+arr[i].rno+"' class='btn-box' href='#'>답글입력</a></div>"
+		            		if(arr[i].garbage === 'n'){
+		            			str += " <div><a data-rno='"+arr[i].rno+"' class='btn-box' href='#'>답글입력</a></div>"
+		            		}
 		            		str += "<div class='hide reply-box' data-rno='"+arr[i].rno+"'>";
 		            		str += "<div class='row' >";
 		            		str += "<div class='9u$ 12u$(small)'>";
@@ -225,7 +229,9 @@ $.getJSON("/upload/list/" + ${board.bno}, function(arr){
 		            		str +=" </a> ";
 		            		str +=" <div class='media-body'> ";
 		            		str +=" <h5 class='mt-0'>"+ arr[i].replyer +"</h5> ";
-		            		str +=" <span class='fr'> <a href='#' id='delRe' data-rno='"+arr[i].rno+"'>삭제</a> | <a href='#' id='modRe' data-rno='"+arr[i].rno+"'>수정</a></span>"
+		            		if(arr[i].garbage === 'n'){
+		            			str +=" <span class='fr'> <a href='#' id='delRe' data-rno='"+arr[i].rno+"'>삭제</a> | <a href='#' id='modRe' data-rno='"+arr[i].rno+"'>수정</a></span>"
+		            		}
 		            		str += " <span data-rno='"+arr[i].rno+"' data-target='modTarget'>"+ arr[i].reply +"</span>";
 		            		str +=" </div></div> ";
 		            		
@@ -253,8 +259,7 @@ $.getJSON("/upload/list/" + ${board.bno}, function(arr){
 		              type:'POST',
 		              contentType: "application/json; charset=utf-8",
 		              data:JSON.stringify(data), 
-		              success: function(result){
-		                  alert("success");
+		              success: function(result){		             
 		                  getReplies();
 		              }
 		          })
@@ -282,7 +287,6 @@ $.getJSON("/upload/list/" + ${board.bno}, function(arr){
 	              contentType: "application/json; charset=utf-8",
 	              data:JSON.stringify(data), 
 	              success: function(result){
-	                  alert("success");
 	                  getReplies();
 	              }
 	          })
@@ -293,14 +297,13 @@ $.getJSON("/upload/list/" + ${board.bno}, function(arr){
 	    	e.preventDefault(); 
 	    	var rno = $(this).attr("data-rno");
 	         
-	       $.ajax({
+	       	$.ajax({
 	           url:'/reply/' + rno,
 	           type: 'DELETE',
 	           success: function(result){
-	               alert("success");
 	               getReplies(); // 바로 적용되도록
 	           }
-	       });
+	       	});
 	      });
 	    $(".replyDiv").on("click", "#modRe", function(e){
 	    	e.preventDefault();
@@ -329,7 +332,6 @@ $.getJSON("/upload/list/" + ${board.bno}, function(arr){
 	            contentType: "application/json; charset=utf-8",
 	            data:JSON.stringify(data),
 	            success: function(result){
-	                alert("success");
 	            }
 	        });
 	    });

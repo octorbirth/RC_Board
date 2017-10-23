@@ -115,12 +115,12 @@ header.main>:last-child {
 		var modForm = $("#modForm");
 		e.preventDefault();
 		var plus = 0;
+		var isimg = 'n';
+		var isfile = 'n';
 		var title = modForm.find("input[name='title']").val();
 		if(title.length === 0){
 			alert("제목을 입력하세요!")
 		}else{
-			
-			
 			
 			$(".imgList li").each(function(idx){
 				
@@ -128,13 +128,20 @@ header.main>:last-child {
 				var str = "<input type='hidden' name='ufile["+ idx +"]' value='"+fileName+"'>";
 				modForm.append(str);
 				plus = idx + 1;
+				isimg = 'y';
 			});
 			
 			$(".fileList li").each(function(idx){
 				var fileName = $(this).attr("data-file");
 				var str = "<input type='hidden' name='ufile["+ (plus+idx) +"]' value='"+fileName+"'>";
 				modForm.append(str);
+				isfile = 'y';
 			});
+			var str = "<input type='hidden' name='isimg' value='"+isimg+"'>";
+			modForm.append(str);
+			
+			str = "<input type='hidden' name='isfile' value='"+isfile+"'>";
+			modForm.append(str);
 			
 			modForm.submit();
 		}

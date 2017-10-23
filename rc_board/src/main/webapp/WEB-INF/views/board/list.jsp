@@ -63,7 +63,15 @@
 							<c:forEach var="item" items="${list}">
 								<tr>
 									<td>${item.bno}</td>
-									<td><a href='view?bno=${item.bno}&page=${cri.page}'>${item.title}</td>
+									<td>
+									<a href='view?bno=${item.bno}&page=${cri.page}'>${item.title}</a>
+									<c:if test="${item.isimg == 'y' }">
+										<span class='icon fa-image'></span>
+									</c:if>
+									<c:if test="${item.isfile == 'y' }">
+									<span class='icon fa-file'></span>
+									</c:if>
+									 </td>
 									<td>${item.writer}</td>
 								</tr>
 							</c:forEach>

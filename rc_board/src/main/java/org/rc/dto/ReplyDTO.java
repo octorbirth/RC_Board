@@ -9,6 +9,7 @@ public class ReplyDTO {
 	private Integer rno, gno, bno;
     private String reply, replyer;
     private Date replydate;
+    private String garbage;
 
 }
 
@@ -20,3 +21,6 @@ public class ReplyDTO {
 //	    replyer varchar(50) not null,
 //	    replydate timestamp default now()
 //	);
+
+
+//ALTER TABLE tbl_reply ADD garbage char(1) default 'n' ;

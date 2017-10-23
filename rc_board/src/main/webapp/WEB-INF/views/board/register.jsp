@@ -96,6 +96,8 @@ $(document).ready(function () {
 		e.preventDefault();
 		var plus = 0;
 		var title = mainForm.find("input[name='title']").val();
+		var isimg = 'n';
+		var isfile = 'n';
 		if(title.length === 0){
 			alert("제목을 입력하세요!")
 		}else{
@@ -105,9 +107,10 @@ $(document).ready(function () {
 				
 				var str = "<input type='hidden' name='ufile["+ idx +"]' value='"+fileName+"'>";
 				
-				$("#mainForm").append(str);
+				mainForm.append(str);
 				
 				plus = idx + 1;
+				isimg = 'y';
 			});
 			
 			$(".fileList li").each(function(idx){
@@ -116,9 +119,14 @@ $(document).ready(function () {
 				
 				var str = "<input type='hidden' name='ufile["+ (plus+idx) +"]' value='"+fileName+"'>";
 				
-				$("#mainForm").append(str);
+				mainForm.append(str);
+				isfile = 'y';
 			});
+			var str = "<input type='hidden' name='isimg' value='"+isimg+"'>";
+			mainForm.append(str);
 			
+			str = "<input type='hidden' name='isfile' value='"+isfile+"'>";
+			mainForm.append(str);
 			mainForm.submit();
 		}
 		

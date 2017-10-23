@@ -16,6 +16,8 @@ public class BoardDTO {
 	private Date regdate;
 	private Date updateddate;
 	private String[] ufile;
+	private String isfile;
+	private String isimg;
 }
 
 //create table tbl_board (
@@ -27,3 +29,6 @@ public class BoardDTO {
 //	    regdate timestamp default now(),
 //	    updateddate timestamp default now()
 //	);
+
+//ALTER TABLE tbl_board ADD isfile char(1) default 'n' ;
+//ALTER TABLE tbl_board ADD isimg char(1) default 'n' ;

@@ -23,9 +23,13 @@ public interface ReplyMapper {
 	@Insert ("insert into tbl_reply (reply, replyer, gno, bno) values (#{reply}, #{replyer}, #{gno}, #{bno})" )
 	public void rereinsert(ReplyDTO dto);
 	
-	@Delete("delete from tbl_reply where rno = #{rno}")
-    public void delete(Integer rno);
+//	@Delete("delete from tbl_reply where rno = #{rno}")
+//    public void delete(Integer rno);
 
+	@Update("update tbl_reply set reply='삭제된 댓글 입니다.', garbage='y' where rno = #{rno}")
+	  public void delete(Integer rno);
+	
+	
 	@Update("update tbl_reply set reply=#{reply} where rno= #{rno}")
     public void update(ReplyDTO dto);
 
