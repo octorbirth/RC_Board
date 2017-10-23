@@ -51,12 +51,14 @@ img {
 }
 
 .fileli {
-    margin: 0 0 0 0;
+    margin: 0 1em 0 0;
     padding: 0 0 0 0;
     border : 0;
     display: inline-block;
 }
-
+.listFont{
+	font-size: 1.2em;
+}
 </style>
 
 
@@ -127,10 +129,41 @@ img {
 	integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
 	crossorigin="anonymous"></script>
 
+<script src="/resources/js/upload.js"></script>
 <script type="text/javascript">
+
+function checkImageType(fileName){
+	var pattern = /jpg|gif|png|jpeg/i;	
+	return fileName.match(pattern);
+}
+
 $.getJSON("/upload/list/" + ${board.bno}, function(arr){
     for(var i=0; i< arr.length; i++){
-    	console.log(arr[i]);
+    	var str = "";
+    	
+    	if(checkImageType(arr[i])){  // 이미지 파일 이라면
+    		var file = getImgInfo(arr[i]);
+    		console.log(file.fullName);
+    		console.log(file.fileName);
+    		console.log(file.thumbName);
+    		
+    		str += "<li class='fileli'><div>";
+	        str += "<a target='_blank' href='/upload/thumb/"+file.fullName+"'><center><img src='/upload/thumb/"+file.thumbName+"'></div></center>";
+	        str += "<center><span class='listFont'>" + file.fileName+"</sapn></center></a>";
+	        str += "</li>";
+	        $(".imgList").append(str);  
+    		
+    	}else{ // 일반 파일이라면
+    		var file = getFileInfo(arr[i]);
+    		console.log(file.fullName);
+    		console.log(file.fileName);
+    		
+    		str += "<li class='fileli'><div>";
+         	str += "<a href='/upload/download/"+file.fullName+"'><span class='listFont'>" + file.fileName+"</sapn></a>";
+  	        str += "</li>";
+  	        $(".fileList").append(str);
+    	}
+    	
     	
     }
 });
