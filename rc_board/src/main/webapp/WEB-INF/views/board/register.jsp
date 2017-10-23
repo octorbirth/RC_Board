@@ -26,7 +26,7 @@ li {
     border : 0;
     display: inline-block;
 }
-.delImg{
+.delFile{
     padding-left: 0.5em;
     cursor: pointer;
 }
@@ -65,7 +65,7 @@ li {
   </form>
 </div>
 
-<div class="mt">
+<div class="mt fileBox">
 	<div class="box">
 		<ul class='imgList'> 
     	</ul>
@@ -143,20 +143,26 @@ $(document).ready(function () {
 	        	  str += "<li data-file='" + data.uploadName  +"'><div>";
 		          str += "<img src='/upload/thumb/"+data.thumbName+"'></div>";
 		          str += "<center><span class='listFont'>" + data.original+"</sapn>";
-		          str += "<span class='delImg listFont' aria-hidden='true'>&times;</span></center>";
+		          str += "<span data-file='"+ data.uploadName +"' class='delFile listFont' aria-hidden='true'>&times;</span></center>";
 		          str += "</li>";
 		          $(".imgList").append(str);  
 	          }else{
 	        	  str += "<li data-file='" + data.uploadName  +"'><div>";
 	        	  str += "<center><span class='listFont'>" + data.original+"</sapn>";
-		          str += "<span class='delImg listFont' aria-hidden='true'>&times;</span></center>";
+		          str += "<span data-file='"+ data.uploadName +"' class='delFile listFont' aria-hidden='true'>&times;</span></center>";
 		          str += "</li>";
 		          $(".fileList").append(str);
 	          }
 	          
 	      }
 	    });
-
+	});
+	$(".fileBox").on("click", ".delFile", function(e){
+		e.preventDefault();
+		var targetAttr = $(this).attr("data-file");
+    	var target = $("li[data-file='" + targetAttr + "']"); 
+    	target.remove();
+		
 	});
 	
 });
