@@ -43,6 +43,20 @@ img {
 	margin-top: 0.2em;
 	font-size: 0.8em;
 }
+
+.fileul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.fileli {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    display: inline-block;
+}
+
 </style>
 
 
@@ -59,9 +73,17 @@ img {
 </div>
 </header>
 
-<div class="box">이미지 파일 목록</div>
-<div class="box">일반 파일 목록</div>
+<div class="fileBox">
+	<div class="box">
+		<ul class='imgList fileul'> 
+    	</ul>
 
+	</div>
+	<div class="box">
+		<ul class='fileList fileul'> 
+    	</ul>
+	</div>
+</div>
 <h2>내용</h2>
 <div class="12u$">
 	<div class="box">${board.contents}</div>
@@ -106,6 +128,13 @@ img {
 	crossorigin="anonymous"></script>
 
 <script type="text/javascript">
+$.getJSON("/upload/list/" + ${board.bno}, function(arr){
+    for(var i=0; i< arr.length; i++){
+    	console.log(arr[i]);
+    	
+    }
+});
+		
 		var msg = '${result}';
 		if (msg === 'modsuccess') {
 			alert("수정되었습니다.");

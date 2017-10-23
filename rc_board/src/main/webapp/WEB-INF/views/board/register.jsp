@@ -14,13 +14,13 @@ header.main>:last-child {
 textarea {
     resize: none;
 }
-ul {
+.fileul {
     list-style:none;
     margin:0;
     padding:0;
 }
 
-li {
+.fileli {
     margin: 0 0 0 0;
     padding: 0 0 0 0;
     border : 0;
@@ -67,12 +67,12 @@ li {
 
 <div class="mt fileBox">
 	<div class="box">
-		<ul class='imgList'> 
+		<ul class='imgList fileul'> 
     	</ul>
 
 	</div>
 	<div class="box">
-		<ul class='fileList'> 
+		<ul class='fileList fileul'> 
     	</ul>
 	</div>
 </div>
@@ -140,14 +140,14 @@ $(document).ready(function () {
 	      success: function(data){
 	          var str = "";
 	          if(data.type === 'imgFile'){
-	        	  str += "<li data-file='" + data.uploadName  +"'><div>";
+	        	  str += "<li class='fileli' data-file='" + data.uploadName  +"'><div>";
 		          str += "<img src='/upload/thumb/"+data.thumbName+"'></div>";
 		          str += "<center><span class='listFont'>" + data.original+"</sapn>";
 		          str += "<span data-file='"+ data.uploadName +"' class='delFile listFont' aria-hidden='true'>&times;</span></center>";
 		          str += "</li>";
 		          $(".imgList").append(str);  
 	          }else{
-	        	  str += "<li data-file='" + data.uploadName  +"'><div>";
+	        	  str += "<li class='fileli' data-file='" + data.uploadName  +"'><div>";
 	        	  str += "<center><span class='listFont'>" + data.original+"</sapn>";
 		          str += "<span data-file='"+ data.uploadName +"' class='delFile listFont' aria-hidden='true'>&times;</span></center>";
 		          str += "</li>";

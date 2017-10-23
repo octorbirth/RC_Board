@@ -56,5 +56,10 @@ public class BoardServiceImpl implements BoardService {
 		mapper.remove(bno);
 
 	}
+	@Override
+	public List<String> getFileList(Long bno) {
+		
+		return attachMapper.getfiles(bno);
+	}
 
 }

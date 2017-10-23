@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -15,7 +16,10 @@ import javax.imageio.ImageIO;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.imgscalr.Scalr;
+import org.rc.dto.ReplyDTO;
+import org.rc.service.BoardService;
 import org.rc.util.MediaUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,6 +39,9 @@ import lombok.extern.java.Log;
 @RequestMapping("/upload/*")
 @Log
 public class UploadController {
+	
+	@Autowired
+	private BoardService service;
 	
 	@PostMapping(value = "/")
     public @ResponseBody Map<String, String> upload(MultipartFile file) throws Exception {
@@ -102,6 +109,11 @@ public class UploadController {
 			in.close();
 		}
         return entity;
+    }
+    
+    @GetMapping("/list/{bno}")
+    public @ResponseBody List<String> list(@PathVariable("bno") Long bno){
+		return service.getFileList(bno);
     }
 
 }
