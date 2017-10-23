@@ -57,13 +57,15 @@ public class BoardController {
 	public String modify(BoardDTO dto, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {	
 		rttr.addAttribute("bno", dto.getBno()); // url에 표시
 		
+		service.deleteFiles(dto.getBno());
 		service.modify(dto);
+		
 		rttr.addFlashAttribute("result", "modsuccess");
 		return "redirect:/board/view" + cri.getURI();
 		// 객체를 따로 보내지 않으면 자동으로 앞 글자를 소문자로 해서 처리한다.
 	}
 	@PostMapping("/remove")
-	public String remove(RedirectAttributes rttr, BoardDTO dto) {	
+	public String remove(RedirectAttributes rttr, BoardDTO dto) {
 		service.remove(dto.getBno());
 		rttr.addFlashAttribute("result", "delsuccess");
 		return "redirect:/board/list";

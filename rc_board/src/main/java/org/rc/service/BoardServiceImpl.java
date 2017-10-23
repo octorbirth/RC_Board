@@ -1,7 +1,9 @@
 package org.rc.service;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import org.rc.dto.BoardDTO;
@@ -48,18 +50,29 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void modify(BoardDTO dto) {
 		mapper.update(dto);
-
+		String[] ufiles = dto.getUfile();
+		
+		Long bno = dto.getBno();
+		if(ufiles != null) {
+			Arrays.stream(ufiles).forEach((fname)->{
+				
+				attachMapper.modInsert(fname, bno);
+			});
+		}
 	}
 
 	@Override
 	public void remove(Long bno) {
+		attachMapper.deletefiles(bno);
 		mapper.remove(bno);
-
 	}
 	@Override
 	public List<String> getFileList(Long bno) {
 		
 		return attachMapper.getfiles(bno);
 	}
-
+	@Override
+	public void deleteFiles(Long bno) {
+		attachMapper.deletefiles(bno);
+	}
 }

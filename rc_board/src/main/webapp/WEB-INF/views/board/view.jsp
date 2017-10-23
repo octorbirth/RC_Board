@@ -332,7 +332,6 @@ $.getJSON("/upload/list/" + ${board.bno}, function(arr){
 	                alert("success");
 	            }
 	        });
-
 	    });
 	    
 </script>
