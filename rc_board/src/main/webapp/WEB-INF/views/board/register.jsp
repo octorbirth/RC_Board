@@ -30,7 +30,7 @@ li {
     padding-left: 0.5em;
     cursor: pointer;
 }
-.imglist{
+.listFont{
 	font-size: 1.2em;
 }
 </style>
@@ -72,7 +72,8 @@ li {
 
 	</div>
 	<div class="box">
-		일반 파일 목록
+		<ul class='fileList'> 
+    	</ul>
 	</div>
 </div>
 
@@ -93,7 +94,7 @@ $(document).ready(function () {
 	
 	$("#createBoard").on("click",function(e){
 		e.preventDefault();
-		
+		var plus = 0;
 		var title = mainForm.find("input[name='title']").val();
 		if(title.length === 0){
 			alert("제목을 입력하세요!")
@@ -103,6 +104,17 @@ $(document).ready(function () {
 				var fileName = $(this).attr("data-file");
 				
 				var str = "<input type='hidden' name='ufile["+ idx +"]' value='"+fileName+"'>";
+				
+				$("#mainForm").append(str);
+				
+				plus = idx + 1;
+			});
+			
+			$(".fileList li").each(function(idx){
+				
+				var fileName = $(this).attr("data-file");
+				
+				var str = "<input type='hidden' name='ufile["+ (plus+idx) +"]' value='"+fileName+"'>";
 				
 				$("#mainForm").append(str);
 			});
@@ -127,13 +139,21 @@ $(document).ready(function () {
 	      type: 'POST',
 	      success: function(data){
 	          var str = "";
-	          str ="<li data-file='" + data.uploadName  +"'><div>";
-	          str += "<img src='/upload/thumb/"+data.thumbName+"'></div>";
-	          str += "<center><span class='imglist'>" + data.original+"</sapn>";
-	          str += "<span class='delImg imglist' aria-hidden='true'>&times;</span></center>";
-	          str += "</li>";
-	          $(".imgList").append(str);
-
+	          if(data.type === 'imgFile'){
+	        	  str += "<li data-file='" + data.uploadName  +"'><div>";
+		          str += "<img src='/upload/thumb/"+data.thumbName+"'></div>";
+		          str += "<center><span class='listFont'>" + data.original+"</sapn>";
+		          str += "<span class='delImg listFont' aria-hidden='true'>&times;</span></center>";
+		          str += "</li>";
+		          $(".imgList").append(str);  
+	          }else{
+	        	  str += "<li data-file='" + data.uploadName  +"'><div>";
+	        	  str += "<center><span class='listFont'>" + data.original+"</sapn>";
+		          str += "<span class='delImg listFont' aria-hidden='true'>&times;</span></center>";
+		          str += "</li>";
+		          $(".fileList").append(str);
+	          }
+	          
 	      }
 	    });
 
