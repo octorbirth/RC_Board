@@ -296,15 +296,19 @@ $.getJSON("/upload/list/" + ${board.bno}, function(arr){
 	    $(".replyDiv").on("click", "#delRe", function(e){
 	    	e.preventDefault(); 
 	    	var rno = $(this).attr("data-rno");
-	         
+	        var data = {bno:$("#replyBno").val()}; 
+		         
 	       	$.ajax({
 	           url:'/reply/' + rno,
 	           type: 'DELETE',
+	           contentType: "application/json; charset=utf-8",
+	           data:JSON.stringify(data), 
 	           success: function(result){
 	               getReplies(); // 바로 적용되도록
 	           }
-	       	});
-	      });
+	      	});
+	     });
+	    
 	    $(".replyDiv").on("click", "#modRe", function(e){
 	    	e.preventDefault();
 	    	

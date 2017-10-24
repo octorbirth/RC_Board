@@ -28,7 +28,7 @@ public class ReplyController {
     private ReplyService service;
 
 	@GetMapping("/list/{bno}")
-    public List<ReplyDTO> list(@PathVariable("bno") int bno){
+    public List<ReplyDTO> list(@PathVariable("bno") Long bno){
 		ReplyDTO dto = new ReplyDTO();
 		dto.setBno(bno);
 		return service.getListReply(dto);
@@ -36,30 +36,24 @@ public class ReplyController {
 	
 	@PostMapping("/new")
     public void addReply(@RequestBody ReplyDTO dto) {
-//      log.info("===============");
-//		log.info("" + dto);
-//		log.info("===============");
 		service.reRegister(dto);
-		service.reUpdate();
     }
 	@PostMapping("/renew")
     public void addreReply(@RequestBody ReplyDTO dto) {
-//      log.info("===============");
-//		log.info("" + dto);
-//		log.info("===============");
+
 		service.rereRegister(dto);
 		
     }
 	
 	@DeleteMapping("/{rno}")
-    public ResponseEntity<String> removeReply(@PathVariable("rno") Integer rno){
+    public ResponseEntity<String> removeReply(@PathVariable("rno") Long rno, @RequestBody ReplyDTO dto){
         // 결과값을 보여주기 위해서 responseEntity를 이용
-        service.remove(rno);
+        service.remove(rno, dto.getBno());
         return new ResponseEntity<String>("removed",HttpStatus.OK);
     }
 
 	@PutMapping("/{rno}")
-    public ResponseEntity<String> updateReply(@PathVariable("rno") Integer rno, @RequestBody ReplyDTO dto){
+    public ResponseEntity<String> updateReply(@PathVariable("rno") Long rno, @RequestBody ReplyDTO dto){
         dto.setRno(rno);
         log.info("Update rno: " + rno);
         service.update(dto);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.rc.dto.Criteria;
 import org.rc.dto.ReplyDTO;
+import org.rc.mapper.BoardMapper;
 import org.rc.mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class ReplyServiceImpl implements ReplyService {
 	@Autowired
 	private ReplyMapper mapper;
 
+	@Autowired
+	private BoardMapper boardMapper;
+	
 	@Override
     public List<ReplyDTO> getListReply(ReplyDTO dto) {        
         return mapper.listReply(dto);
@@ -21,28 +25,26 @@ public class ReplyServiceImpl implements ReplyService {
 
 	 @Override
 	 public void reRegister(ReplyDTO dto) {
-	        mapper.reinsert(dto);
+	 	boardMapper.upreplycnt(dto.getBno());
+        mapper.reinsert(dto);
+        mapper.reupdate();
 	 }
-	 @Override
-	 public void reUpdate() {
-	        mapper.reupdate();
-	 }
-
+	 
 	@Override
 	public void rereRegister(ReplyDTO dto) {
-			mapper.rereinsert(dto);
+		boardMapper.upreplycnt(dto.getBno());
+		mapper.rereinsert(dto);
 	}
 	
 	@Override
-    public void remove(Integer rno) {
+    public void remove(Long rno, Long bno) {
         mapper.delete(rno);  
+        boardMapper.downreplycnt(bno);
     }
 	@Override
     public void update(ReplyDTO dto) {
         mapper.update(dto);        
     }
-
-
 
 
 

@@ -9,8 +9,7 @@ public interface ReplyService {
 	
 	public List<ReplyDTO> getListReply(ReplyDTO dto);
 	public void reRegister(ReplyDTO dto);
-	public void reUpdate();
 	public void rereRegister(ReplyDTO dto);
-	public void remove(Integer rno);
+	public void remove(Long rno, Long bno);
 	public void update(ReplyDTO dto);
 }

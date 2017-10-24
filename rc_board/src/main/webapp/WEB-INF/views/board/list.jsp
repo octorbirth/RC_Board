@@ -95,6 +95,7 @@
 									<c:if test="${item.isfile == 'y' }">
 									<span class='icon fa-file'></span>
 									</c:if>
+									<span> ( ${item.replycnt} ) </span>
 									 </td>
 									<td>${item.writer}</td>
 								</tr>

@@ -27,4 +27,10 @@ public interface BoardMapper {
 	
 	@Delete("delete from tbl_board where bno = #{bno}")
 	public void remove(Long bno);
+
+	@Update("update tbl_board set replycnt = replycnt+1 where bno = #{bno}")
+	public void upreplycnt(Long bno);
+
+	@Update("update tbl_board set replycnt = replycnt-1 where bno = #{bno}")
+	public void downreplycnt(Long bno);
 }

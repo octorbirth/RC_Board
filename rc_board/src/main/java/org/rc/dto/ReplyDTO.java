@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class ReplyDTO {
-	private Integer rno, gno, bno;
+	private Long rno, gno, bno;
     private String reply, replyer;
     private Date replydate;
     private String garbage;

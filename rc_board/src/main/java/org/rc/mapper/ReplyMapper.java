@@ -27,7 +27,7 @@ public interface ReplyMapper {
 //    public void delete(Integer rno);
 
 	@Update("update tbl_reply set reply='삭제된 댓글 입니다.', garbage='y' where rno = #{rno}")
-	  public void delete(Integer rno);
+	  public void delete(Long rno);
 	
 	
 	@Update("update tbl_reply set reply=#{reply} where rno= #{rno}")
