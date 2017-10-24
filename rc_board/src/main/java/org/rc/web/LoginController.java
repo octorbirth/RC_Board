@@ -25,7 +25,7 @@ public class LoginController {
         member.setMpw(dto.getMpw());
         member.setMname("사용자" + dto.getMid());
         log.info("세션 발급");
-        model.addAttribute("memberDTO", member);
+        model.addAttribute("memberVO", member);
     }
 
 }

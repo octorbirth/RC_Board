@@ -1,10 +1,12 @@
 package org.rc.interceptor;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.util.WebUtils;
 
 import lombok.extern.java.Log;
 
@@ -16,13 +18,15 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 
 		 HttpSession session = request.getSession();
-	        
-	     // this member not yet logined
-	     if(session.getAttribute("memberDTO") == null) {
-	    	 response.sendRedirect("/login"); // 튕겨내기
-	    	 return false; // 반환값
-	     }
-	         return true;
+	     
+		 Cookie loginCookie = WebUtils.getCookie(request, "login");
+		 
+		 if (loginCookie == null) {
+	            response.sendRedirect("/login");
+	            return false;
+	        }
+		 
+	     return true;
 
 	}
 	

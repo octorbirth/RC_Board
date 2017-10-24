@@ -2,9 +2,11 @@ package org.rc.interceptor;
 
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.rc.vo.MemberVO;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -24,7 +26,10 @@ public class LoginAfterInterceptor extends HandlerInterceptorAdapter {
 		Map<String, Object> map = modelAndView.getModel();  // model을 가져온다.
         
         if(map.get("memberDTO") != null) {
-            request.getSession().setAttribute("memberDTO", map.get("memberDTO"));   // session에 담긴다.
+        	MemberVO vo = (MemberVO)map.get("memberVO");
+            Cookie loginCookie = new Cookie("login", vo.getMid());
+            loginCookie.setMaxAge(2*60); // 2분간 지속 (브라우저 껐다 켜도 지속)
+            response.addCookie(loginCookie);
         }
 	}
 
