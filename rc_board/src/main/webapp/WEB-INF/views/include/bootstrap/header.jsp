@@ -11,7 +11,11 @@
 <link rel="stylesheet" href="/resources/assets/css/main.css" />
 </head>
 <body>
-
+	<style>
+	ul.icons li{
+		padding : 0 0.3em 0 0;
+	}
+	</style>
 
 	<!-- Wrapper -->
 	<div id="wrapper">
@@ -21,6 +25,11 @@
 			<div class="inner">
 
 				<!-- Header -->
-				<header id="header"> <a href="index.html" class="logo"><strong>Editorial</strong>
-					by HTML5 UP</a>
+				<header id="header"> <a href="index.html" class="logo"><strong>창의교육</strong>
+					4분반</a>
+				<ul class="icons">
+					<li><span class="label">${memberVO.mname}님  |</span></li>
+					<li><a href="/logout"><span class="label">Logout</span></a></li>
+				</ul>
+
 				</header>

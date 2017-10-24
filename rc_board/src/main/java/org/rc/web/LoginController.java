@@ -1,5 +1,10 @@
 package org.rc.web;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.rc.dto.MemberDTO;
 import org.rc.service.MemberService;
 import org.rc.vo.MemberVO;
@@ -8,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.util.WebUtils;
 
 import lombok.extern.java.Log;
 
@@ -38,7 +44,31 @@ public class LoginController {
         }else {
         	model.addAttribute("memberVO", service.login(dto));	
         }
-        
+        return;
     }
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+    	log.info("logout.....................");
+    	
+    	Object obj = session.getAttribute("memberVO");
 
+   	  	if (obj != null) {
+   	  		MemberVO vo = (MemberVO) obj;
+   	  		session.removeAttribute("login");
+   	  		session.invalidate();
+	   	  
+   	  		Cookie loginCookie = WebUtils.getCookie(request, "login");
+	
+   	  		if (loginCookie != null) {
+	   	  
+	   		  loginCookie.setPath("/");
+	   		  loginCookie.setMaxAge(0);
+	   		  response.addCookie(loginCookie);
+	   	  
+   	  		}
+	   	} 
+
+   	  	return "redirect:/login";
+    	
+    }
 }

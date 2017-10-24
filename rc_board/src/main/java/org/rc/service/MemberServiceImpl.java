@@ -26,6 +26,12 @@ public class MemberServiceImpl implements MemberService{
 		mapper.createID(dto);
 		return;
 	}
+
+	@Override
+	public MemberVO autoLogin(MemberDTO dto) {
+		
+		return mapper.getVO(dto);
+	}
 	
 	
 	

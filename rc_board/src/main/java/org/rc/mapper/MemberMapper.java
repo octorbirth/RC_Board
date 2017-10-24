@@ -11,4 +11,7 @@ public interface MemberMapper {
 	
 	@Insert("insert into tbl_member (mid, mpw, mname) values(#{mid},#{mpw}, #{mname})")
 	public void createID(MemberDTO dto);
+	
+	@Select("select * from tbl_member where mid = #{mid}")
+	public MemberVO getVO(MemberDTO dto);
 }
