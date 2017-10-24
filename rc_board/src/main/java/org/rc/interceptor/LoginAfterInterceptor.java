@@ -22,14 +22,26 @@ public class LoginAfterInterceptor extends HandlerInterceptorAdapter {
 		if(request.getMethod().equals("GET")) {  // get방식을 처리하기 위해 (아래 root-context.xml 참고
             return;
         }
-		log.info("로그인 후 처리");
+		
+		
+		
+		String auto = request.getParameter("auto");
+		
+		
 		Map<String, Object> map = modelAndView.getModel();  // model을 가져온다.
         
-        if(map.get("memberDTO") != null) {
-        	MemberVO vo = (MemberVO)map.get("memberVO");
-            Cookie loginCookie = new Cookie("login", vo.getMid());
-            loginCookie.setMaxAge(2*60); // 2분간 지속 (브라우저 껐다 켜도 지속)
-            response.addCookie(loginCookie);
+        if(map.get("memberVO") != null) {
+        	
+        	request.getSession().setAttribute("memberVO", map.get("memberVO")); // session에 담긴다.
+        	
+        	if (auto != null) {
+        		MemberVO vo = (MemberVO)map.get("memberVO");
+        		Cookie loginCookie = new Cookie("login", vo.getMid());
+        		loginCookie.setMaxAge(2*60); // 2분간 지속 (브라우저 껐다 켜도 지속)
+        		response.addCookie(loginCookie);
+        	}
+        	response.sendRedirect("/board/list");
+        	return;
         }
 	}
 

@@ -19,14 +19,26 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 
 		 HttpSession session = request.getSession();
 	     
+		 // 두가지 조건 : session이 있거나 cookie가 있거나 쿠키를 쓰는지 체크
+	     boolean useSession = request.getSession().getAttribute("memberVO") != null? true : false;
+		 
+	     if(useSession) {
+	            log.info("current user uses session");
+	            return true;
+	     }
+	     
+	     
 		 Cookie loginCookie = WebUtils.getCookie(request, "login");
 		 
-		 if (loginCookie == null) {
-	            response.sendRedirect("/login");
-	            return false;
-	        }
+		 boolean useCookie = loginCookie != null? true: false;
+		 if(useCookie) {
+			 	log.info("current user uses session");
+	            return true;            
+	      }
 		 
-	     return true;
+		 response.sendRedirect("/login");
+		 
+	     return false;
 
 	}
 	

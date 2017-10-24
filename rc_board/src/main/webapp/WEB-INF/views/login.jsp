@@ -48,7 +48,7 @@
                     <input name = "mpw" id="login_password" class="form-control" type="password" placeholder="Password" required>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox"> Remember me
+                            <input name='auto' type="checkbox"> Remember me
                         </label>
                     </div>
                 </div>
