@@ -14,7 +14,16 @@
 
 </head>
 <body>
-
+	<style>
+	
+	.registerBtn{
+		float:right;
+	}
+	
+	ul.actions li {
+		padding : 0 0 0 0;
+	}
+	</style>
 	<!-- Wrapper -->
 	<div id="wrapper">
 
@@ -33,11 +42,11 @@
 					<h1>
 						RC 하우스<br /> by HTML5 UP
 					</h1>
-					<p>A free and fully responsive site template</p>
+					<p>A free and fully responsive site</p>
 					</header>
-					<p>--- 소 개 글 ---</p>
+					<p> 소 개 글 </p>
 					<ul class="actions">
-						<li><a href="rc.korea.ac.kr" class="button big">Learn
+						<li><a target="_blank" href="http://rc.korea.ac.kr" class="button big">Learn
 								More</a></li>
 					</ul>
 				</div>
@@ -47,8 +56,22 @@
 
 				<hr class="major" />
 				<h2>게시판</h2>
-				<ul class="actions" align="right">
-					<li><a href="/board/register" class="button special">글 등록</a></li>
+				<ul class="actions">
+					<li>
+						<select>
+						  <option value="volvo">Volvo</option>
+						  <option value="saab">Saab</option>
+						  <option value="mercedes">Mercedes</option>
+						  <option value="audi">Audi</option>
+						</select>
+				</li>
+				<li class="pr">		
+					<input type="text" name="keyword" id="query" placeholder="Search" />				
+				</li>
+				<li class="pl">		
+					<span class="button special icon fa-search"></span>				
+				</li>
+					<li class='registerBtn'><a href="/board/register" class="button special">글 등록</a></li>
 				</ul>
 				<div class="table-wrapper">
 					<table class="alt">
@@ -57,6 +80,7 @@
 								<th>번호</th>
 								<th>제목</th>
 								<th>작성자</th>
+								
 							</tr>
 						</thead>
 						<tbody>
