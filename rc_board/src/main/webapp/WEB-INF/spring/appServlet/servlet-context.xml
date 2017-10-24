@@ -28,6 +28,19 @@
 	
 	<context:component-scan base-package="org.rc.web" />
 	
+	<beans:bean id="login" class="org.rc.interceptor.LoginCheckInterceptor"></beans:bean>
+    <beans:bean id="afterLogin" class="org.rc.interceptor.LoginAfterInterceptor"></beans:bean>
+    
+    <interceptors>
+        <interceptor>
+            <mapping path="/board/*"/>
+            <beans:ref bean="login"/>
+        </interceptor>
+        <interceptor>
+        	<mapping path="/login"></mapping>
+        	<beans:ref bean="afterLogin"/>
+    	</interceptor>
+    </interceptors>
 	
 	
 </beans:beans>

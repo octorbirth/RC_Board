@@ -1,52 +1,54 @@
-$('#login-button').click(function() {
-			$('#login-button').fadeOut("slow", function() {
-				$(".container").fadeIn();
-			});
-		});
-	
-$("#close-btn").click(function(){
-    $(".container").fadeOut(500, function(){
-        $("#login-button").fadeIn(500);
-    });
-});
-
-$(function() {
-
-	// 각각의 form 형태
-    var $formLogin = $('#login-form'); 
-    var $formLost = $('#lost-form');
-    var $formRegister = $('#register-form');
-    
-    // 에워싸는 전체 form 태그
-    var $divForms = $('#div-forms');
-    
-    var $modalAnimateTime = 300;
-    var $msgAnimateTime = 150;
-    var $msgShowTime = 2000;
+ $('#login-button').click(function() {
 
 
-	// 각각의 form 화면에서 전환 시킬때 효과
-    $('#login_register_btn').click( function () { modalAnimate($formLogin, $formRegister) });
-    $('#register_login_btn').click( function () { modalAnimate($formRegister, $formLogin); });
-    $('#login_lost_btn').click( function () { modalAnimate($formLogin, $formLost); });
-    $('#lost_login_btn').click( function () { modalAnimate($formLost, $formLogin); });
-    $('#lost_register_btn').click( function () { modalAnimate($formLost, $formRegister); });
-    $('#register_lost_btn').click( function () { modalAnimate($formRegister, $formLost); });
-
-    
-    function modalAnimate ($oldForm, $newForm) {
-        var $oldH = $oldForm.height();
-        var $newH = $newForm.height();
-        $divForms.css("height",$oldH);
-        $oldForm.fadeToggle($modalAnimateTime, function(){
-            $divForms.animate({height: $newH}, $modalAnimateTime, function(){
-                $newForm.fadeToggle($modalAnimateTime);
-            });
+        $('#login-button, #projectName').fadeOut("slow", function() {
+            $(".container").fadeIn();
         });
-    }
-});
+    });
 
-$.getScript("https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js", function(){
+    $("#close-btn").click(function(){
+        $(".container").fadeOut(500, function(){
+            $("#login-button, #projectName").fadeIn(500);
+        });
+    });
+
+    $(function() {
+
+        // 각각의 form 형태
+        var $formLogin = $('#login-form');
+        var $formLost = $('#lost-form');
+        var $formRegister = $('#register-form');
+
+        // 에워싸는 전체 form 태그
+        var $divForms = $('#div-forms');
+
+        var $modalAnimateTime = 300;
+        var $msgAnimateTime = 150;
+        var $msgShowTime = 2000;
+
+
+        // 각각의 form 화면에서 전환 시킬때 효과
+        $('#login_register_btn').click( function () { modalAnimate($formLogin, $formRegister) });
+        $('#register_login_btn').click( function () { modalAnimate($formRegister, $formLogin); });
+        $('#login_lost_btn').click( function () { modalAnimate($formLogin, $formLost); });
+        $('#lost_login_btn').click( function () { modalAnimate($formLost, $formLogin); });
+        $('#lost_register_btn').click( function () { modalAnimate($formLost, $formRegister); });
+        $('#register_lost_btn').click( function () { modalAnimate($formRegister, $formLost); });
+
+
+        function modalAnimate ($oldForm, $newForm) {
+            var $oldH = $oldForm.height();
+            var $newH = $newForm.height();
+            $divForms.css("height",$oldH);
+            $oldForm.fadeToggle($modalAnimateTime, function(){
+                $divForms.animate({height: $newH}, $modalAnimateTime, function(){
+                    $newForm.fadeToggle($modalAnimateTime);
+                });
+            });
+        }
+    });
+
+    $.getScript("https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js", function(){
         particlesJS('particles-js',
             {
                 "particles": {
