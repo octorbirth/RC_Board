@@ -86,15 +86,15 @@
             <!-- End | Lost Password Form -->
 
             <!-- Begin | Register Form -->
-            <form id="register-form" style="display:none;">
+            <form method='post' id="register-form" style="display:none;">
 
 
                 <div class="modal-body">
                     <div>
                         <div>
-                            <input id="register_username" class="form-control" type="text" placeholder="Username" required>
-                            <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
-                            <input id="register_password" class="form-control" type="password" placeholder="Password" required>
+                            <input name='mname' id="register_username" class="form-control" type="text" placeholder="Username" required>
+                            <input name='mid'id="register_id" class="form-control" type="text" placeholder="Id" required>
+                            <input name='mpw'id="register_password" class="form-control" type="password" placeholder="Password" required>
                         </div>
 
 
