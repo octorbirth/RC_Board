@@ -8,6 +8,7 @@ import org.rc.mapper.BoardMapper;
 import org.rc.mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ReplyServiceImpl implements ReplyService {
@@ -22,20 +23,20 @@ public class ReplyServiceImpl implements ReplyService {
     public List<ReplyDTO> getListReply(ReplyDTO dto) {        
         return mapper.listReply(dto);
     }
-
-	 @Override
+	@Transactional
+	@Override
 	 public void reRegister(ReplyDTO dto) {
 	 	boardMapper.upreplycnt(dto.getBno());
         mapper.reinsert(dto);
         mapper.reupdate();
 	 }
-	 
+	@Transactional
 	@Override
 	public void rereRegister(ReplyDTO dto) {
 		boardMapper.upreplycnt(dto.getBno());
 		mapper.rereinsert(dto);
 	}
-	
+	@Transactional
 	@Override
     public void remove(Long rno, Long bno) {
         mapper.delete(rno);  

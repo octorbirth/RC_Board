@@ -12,8 +12,7 @@ import org.rc.dto.SearchCriteria;
 import org.rc.mapper.AttachMapper;
 import org.rc.mapper.BoardMapper;
 import org.springframework.stereotype.Service;
-
-
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.java.Log;
 
@@ -26,7 +25,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Inject
 	private AttachMapper attachMapper;
-	
+	@Transactional
 	@Override
 	public void register(BoardDTO dto) {
 		mapper.insert(dto);
@@ -38,6 +37,7 @@ public class BoardServiceImpl implements BoardService {
 		}
 			
 	}
+	@Transactional
 	@Override
 	public List<BoardDTO> list(SearchCriteria cri) {
 		cri.setTotal(mapper.getTotal(cri));
@@ -48,6 +48,7 @@ public class BoardServiceImpl implements BoardService {
 	public BoardDTO get(Long bno) {
 		return mapper.findByBno(bno);
 	}
+	@Transactional
 	@Override
 	public void modify(BoardDTO dto) {
 		mapper.update(dto);
@@ -61,7 +62,7 @@ public class BoardServiceImpl implements BoardService {
 			});
 		}
 	}
-
+	@Transactional
 	@Override
 	public void remove(Long bno) {
 		attachMapper.deletefiles(bno);
