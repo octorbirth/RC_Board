@@ -15,13 +15,13 @@
      and title like CONCAT('%', #{keyword}, '%')
    </if>
    <if test="searchType == 'c'.toString()">
-     and content like CONCAT('%', #{keyword}, '%')
+     and contents like CONCAT('%', #{keyword}, '%')
    </if>
    <if test="searchType == 'w'.toString()">
      and writer like CONCAT('%', #{keyword}, '%')
    </if>     
    <if test="searchType == 'tc'.toString()">
-     and ( title like CONCAT('%', #{keyword}, '%') OR content like CONCAT('%', #{keyword}, '%'))
+     and ( title like CONCAT('%', #{keyword}, '%') OR contents like CONCAT('%', #{keyword}, '%'))
    </if>                    
  </if>  
 </sql>

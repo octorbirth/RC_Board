@@ -8,7 +8,7 @@
 
 <style>
 	
-	.registerBtn{
+	.listBtn{
 		float:right;
 	}
 	
@@ -59,13 +59,23 @@
 						</select>
 				</li>
 				<li class="pr">		
-					<input type="text" name="keyword" id="query" placeholder="Search" />				
+					<input type="text" name="keyword" id="query" value = '${cri.keyword}' placeholder="Search" />				
 				</li>
 				<li class="pl">		
 					<span id="searchBtn"class="button special icon fa-search"></span>				
 				</li>
-					<li class='registerBtn'><a href="/board/register" class="button special">글 등록</a></li>
+					<div class='listBtn'>
+					<li><a href="/board/list" class="button default">전체목록</a></li>
+					<li><a href="/board/register" class="button special">글 등록</a></li>
+					</div>
+					
 				</ul>
+				
+				
+				<form id='actionForm' method="get">
+					<input type='hidden' name='page' value='${cri.page}'>
+				</form>
+				
 				<div class="table-wrapper">
 					<table class="alt">
 						<thead>
@@ -122,7 +132,15 @@
 		$(".pagination").on("click", "li", function(e){
 			e.preventDefault();
 			var pageNum = $(this).attr('data-page');
+			var searchType = $("select[name='searchType']").val();
+			var keyword = $("input[name='keyword']").val();
+			
+			
 			if($(this).attr('data-page') !== 'none') {
+				if(searchType !== null && searchType !== 'n' && keyword !== null){	
+					self.location="/board/list?page="+pageNum+"&searchType="+searchType+"&keyword="+keyword;
+					return;
+				}	
 				self.location="/board/list?page="+pageNum;
 			}
 		});
@@ -137,6 +155,22 @@
 		
 		
 		$("#searchBtn").on("click",function(e){
-			console.log("click...................");
+			var actionForm = $("#actionForm");
+			var searchType = $("select[name='searchType']").val();
+			var keyword = $("input[name='keyword']").val();
+			
+			if(searchType === null || searchType === 'n'){
+				alert("검색 분류를 설정하세요!")
+				return;
+			}
+			if(keyword.length === 0){
+				alert("검색 키워드를 입력하세요!")
+				return;
+			}
+			var str = '';
+			str += "<input type='hidden' name='searchType' value='"+searchType+"'>";
+			str += "<input type='hidden' name='keyword' value='"+keyword+"'>";
+			actionForm.append(str);
+			actionForm.submit();
 		});
 	</script>

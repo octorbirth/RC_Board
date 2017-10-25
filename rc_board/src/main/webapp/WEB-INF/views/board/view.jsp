@@ -251,7 +251,12 @@ $.getJSON("/upload/list/" + ${board.bno}, function(arr){
 		 getReplies();
 		 
 		 $(".replyBtn").on("click", function(e){
-		    	e.preventDefault(); 
+		    var str = $("#replyBox").val();	
+			 if(str.length === 0 ){
+				 alert("댓글 내용을 입력하세요!");
+				 return;
+			 }
+			 	e.preventDefault(); 
 		    	var data = {reply:$("#replyBox").val(), replyer:$("#replyer").val(), bno:$("#replyBno").val()} // json으로 처리
 		        $("#replyBox").val(""); 
 		          $.ajax({ 
