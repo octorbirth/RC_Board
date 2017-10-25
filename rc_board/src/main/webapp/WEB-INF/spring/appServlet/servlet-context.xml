@@ -30,6 +30,7 @@
 	
 	<beans:bean id="login" class="org.rc.interceptor.LoginCheckInterceptor"></beans:bean>
     <beans:bean id="afterLogin" class="org.rc.interceptor.LoginAfterInterceptor"></beans:bean>
+    <beans:bean id="viewcnt" class="org.rc.interceptor.ViewInterceptor"></beans:bean>
     
     <interceptors>
         <interceptor>
@@ -39,6 +40,10 @@
         <interceptor>
         	<mapping path="/login"></mapping>
         	<beans:ref bean="afterLogin"/>
+    	</interceptor>
+    	<interceptor>
+        	<mapping path="/board/view"></mapping>
+        	<beans:ref bean="viewcnt"/>
     	</interceptor>
     </interceptors>
 	

@@ -76,4 +76,9 @@ public class BoardServiceImpl implements BoardService {
 	public void deleteFiles(Long bno) {
 		attachMapper.deletefiles(bno);
 	}
+	@Override
+	public void viewcntUp(Long bno) {
+		mapper.viewcntUp(bno);
+		
+	}
 }

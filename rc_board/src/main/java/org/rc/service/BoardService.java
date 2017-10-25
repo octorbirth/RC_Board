@@ -14,4 +14,5 @@ public interface BoardService {
 	public void modify(BoardDTO dto);
 	public List<String> getFileList(Long bno);
 	public void deleteFiles(Long bno);
+	public void viewcntUp(Long bno);
 }

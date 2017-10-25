@@ -68,7 +68,6 @@
 					<li><a href="/board/list" class="button default">전체목록</a></li>
 					<li><a href="/board/register" class="button special">글 등록</a></li>
 					</div>
-					
 				</ul>
 				
 				
@@ -83,7 +82,7 @@
 								<th>번호</th>
 								<th>제목</th>
 								<th>작성자</th>
-								
+								<th>조회수</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -101,6 +100,7 @@
 									<span> ( ${item.replycnt} ) </span>
 									 </td>
 									<td>${item.writer}</td>
+									<td>${item.viewcnt}</td>
 								</tr>
 							</c:forEach>
 
@@ -168,7 +168,7 @@
 				return;
 			}
 			var str = '';
-			str += "<input type='hidden' name='page' value='1'>";
+			str += "<input type='hidden' name='page' value='1'>"; // criteria에 따로 설정 해놓았기 때문에 굳이 안 넣어져도 된다.. 
 			str += "<input type='hidden' name='searchType' value='"+searchType+"'>";
 			str += "<input type='hidden' name='keyword' value='"+keyword+"'>";
 			actionForm.append(str);

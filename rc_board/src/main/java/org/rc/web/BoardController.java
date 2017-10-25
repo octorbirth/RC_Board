@@ -28,10 +28,6 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public void list(Model model, @ModelAttribute("cri") SearchCriteria cri) {
-		log.info("==================================");
-		log.info("검색분류 : " + cri.getSearchType() );
-		log.info("검색키워드 : " + cri.getKeyword() );
-		log.info("==================================");
 		model.addAttribute("list", service.list(cri));
 		
 		return;

@@ -34,4 +34,7 @@ public interface BoardMapper {
 
 	@Update("update tbl_board set replycnt = replycnt-1 where bno = #{bno}")
 	public void downreplycnt(Long bno);
+	
+	@Update("update tbl_board set viewcnt = viewcnt+1 where bno = #{bno}")
+	public void viewcntUp(Long bno);
 }
