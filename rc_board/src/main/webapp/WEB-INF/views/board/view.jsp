@@ -100,6 +100,8 @@ img {
 
 <form id='actionForm' method="get">
 	<input type='hidden' name='page' value='${cri.page}'>
+	<input type='hidden' name='searchType' value='${cri.searchType}'>
+	<input type='hidden' name='keyword' value='${cri.keyword}'>
 </form>
 
 <hr>

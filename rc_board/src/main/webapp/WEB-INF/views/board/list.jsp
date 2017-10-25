@@ -91,7 +91,7 @@
 								<tr>
 									<td>${item.bno}</td>
 									<td>
-									<a href='view?bno=${item.bno}&page=${cri.page}'>${item.title}</a>
+									<a href='view?bno=${item.bno}&page=${cri.page}&searchType=${cri.searchType}&keyword=${cri.keyword}'>${item.title}</a>
 									<c:if test="${item.isimg == 'y' }">
 										<span class='icon fa-image'></span>
 									</c:if>

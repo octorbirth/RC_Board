@@ -51,7 +51,7 @@ public class BoardController {
 	
 	
 	@GetMapping("/view")
-	public void view(Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void view(Long bno, @ModelAttribute("cri") SearchCriteria cri, Model model) {
 		model.addAttribute("board", service.get(bno));
 	}
 	
