@@ -5,8 +5,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 public class Criteria {
 	
-	private int page;
-	private int total;
+	protected int page;
+	protected int total;
 		
 	public Criteria() {
 		this(1);

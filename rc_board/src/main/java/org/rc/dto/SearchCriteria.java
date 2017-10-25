@@ -1,5 +1,8 @@
 package org.rc.dto;
 
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class SearchCriteria extends Criteria {
 	private String searchType;
 	private String keyword;
@@ -20,6 +23,17 @@ public class SearchCriteria extends Criteria {
 	public String toString() {
 		return "SearchCriteria [searchType=" + searchType + ", keyword=" + keyword + "]";
 	}
+	@Override
+	public String getURI() {
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.queryParam("page", super.page)
+				.queryParam("searchType", searchType)
+				.queryParam("keyword", keyword)
+				.build();
+		return uriComponents.toUriString();
+	}
+	
+	
 	
 	
 }

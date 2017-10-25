@@ -73,7 +73,7 @@
 				
 				
 				<form id='actionForm' method="get">
-					<input type='hidden' name='page' value='${cri.page}'>
+					
 				</form>
 				
 				<div class="table-wrapper">
@@ -160,14 +160,15 @@
 			var keyword = $("input[name='keyword']").val();
 			
 			if(searchType === null || searchType === 'n'){
-				alert("검색 분류를 설정하세요!")
+				alert("검색 분류를 설정하세요!");
 				return;
 			}
 			if(keyword.length === 0){
-				alert("검색 키워드를 입력하세요!")
+				alert("검색 키워드를 입력하세요!");
 				return;
 			}
 			var str = '';
+			str += "<input type='hidden' name='page' value='1'>";
 			str += "<input type='hidden' name='searchType' value='"+searchType+"'>";
 			str += "<input type='hidden' name='keyword' value='"+keyword+"'>";
 			actionForm.append(str);

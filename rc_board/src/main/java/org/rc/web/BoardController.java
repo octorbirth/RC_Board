@@ -57,11 +57,11 @@ public class BoardController {
 	
 	
 	@GetMapping("/modify")
-	public void mod(Long bno, @ModelAttribute("cri") Criteria cri, Model model) {	
+	public void mod(Long bno, @ModelAttribute("cri") SearchCriteria cri, Model model) {	
 		model.addAttribute("board",service.get(bno));
 	}
 	@PostMapping("/modify")
-	public String modify(BoardDTO dto, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {	
+	public String modify(BoardDTO dto, @ModelAttribute("cri") SearchCriteria cri, RedirectAttributes rttr) {	
 		rttr.addAttribute("bno", dto.getBno()); // url¿¡ Ç¥½Ã
 		
 		service.deleteFiles(dto.getBno());
