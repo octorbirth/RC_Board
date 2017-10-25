@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import org.rc.dto.BoardDTO;
 import org.rc.dto.Criteria;
+import org.rc.dto.SearchCriteria;
 import org.rc.mapper.AttachMapper;
 import org.rc.mapper.BoardMapper;
 import org.springframework.stereotype.Service;
@@ -38,10 +39,10 @@ public class BoardServiceImpl implements BoardService {
 			
 	}
 	@Override
-	public List<BoardDTO> list(Criteria cri) {
+	public List<BoardDTO> list(SearchCriteria cri) {
 		cri.setTotal(mapper.getTotal(cri));
 
-		return mapper.listPage(cri);
+		return mapper.listSearch(cri);
 	}
 	@Override
 	public BoardDTO get(Long bno) {

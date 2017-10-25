@@ -40,18 +40,29 @@
 				<h2>게시판</h2>
 				<ul class="actions">
 					<li>
-						<select>
-						  <option value="volvo">Volvo</option>
-						  <option value="saab">Saab</option>
-						  <option value="mercedes">Mercedes</option>
-						  <option value="audi">Audi</option>
+						<select name="searchType">
+							<option value="n"
+								<c:out value="${cri.searchType == null?'selected':''}"/>>
+							-분류-</option>
+							<option value="t"
+								<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
+							제목</option>
+							<option value="c"
+								<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
+							내용</option>
+							<option value="w"
+								<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
+							작성자</option>
+							<option value="tc"
+								<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
+							제목 + 내용</option>
 						</select>
 				</li>
 				<li class="pr">		
 					<input type="text" name="keyword" id="query" placeholder="Search" />				
 				</li>
 				<li class="pl">		
-					<span class="button special icon fa-search"></span>				
+					<span id="searchBtn"class="button special icon fa-search"></span>				
 				</li>
 					<li class='registerBtn'><a href="/board/register" class="button special">글 등록</a></li>
 				</ul>
@@ -124,4 +135,8 @@
 		
 		$(".pagination").html(pageStr);
 		
+		
+		$("#searchBtn").on("click",function(e){
+			console.log("click...................");
+		});
 	</script>

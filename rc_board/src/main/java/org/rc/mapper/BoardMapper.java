@@ -8,16 +8,17 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.rc.dto.BoardDTO;
 import org.rc.dto.Criteria;
+import org.rc.dto.SearchCriteria;
 
 public interface BoardMapper {
 
 	@Insert("insert into tbl_board (title, contents, writer, isfile, isimg) values (#{title}, #{contents}, #{writer}, #{isfile}, #{isimg})")
 	public void insert(BoardDTO dto);
 
-	public List<BoardDTO> listPage(Criteria Cri);
+	public List<BoardDTO> listSearch(SearchCriteria Cri);
 	
-	@Select("select count(*) from tbl_board where bno > 0")
-	public int getTotal(Criteria cri);
+	
+	public int getTotal(SearchCriteria cri);
 	
 	@Select("select * from tbl_board where bno = #{bno}")
 	public BoardDTO findByBno(Long bno);

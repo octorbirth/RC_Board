@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import org.rc.dto.BoardDTO;
 import org.rc.dto.Criteria;
+import org.rc.dto.SearchCriteria;
 import org.rc.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("/list")
-	public void list(Model model, @ModelAttribute("cri") Criteria cri) {
+	public void list(Model model, @ModelAttribute("cri") SearchCriteria cri) {
 		model.addAttribute("list", service.list(cri));
 	}
 	

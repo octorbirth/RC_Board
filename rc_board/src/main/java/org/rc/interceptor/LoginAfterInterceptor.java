@@ -35,7 +35,7 @@ public class LoginAfterInterceptor extends HandlerInterceptorAdapter {
         	if (auto != null) { // 자동 로그인 유무 (쿠키 발급 유무)
         		MemberVO vo = (MemberVO)map.get("memberVO");
         		Cookie loginCookie = new Cookie("login", vo.getMid());
-        		loginCookie.setMaxAge(60*60); // 60분간 지속 (브라우저 껐다 켜도 지속)
+        		loginCookie.setMaxAge(12*60*60); //60초(1분) -> 60번(1시간)-> 12번(12시간) 지속 (브라우저 껐다 켜도 지속)
         		response.addCookie(loginCookie);
         	}
         	response.sendRedirect("/board/list");
