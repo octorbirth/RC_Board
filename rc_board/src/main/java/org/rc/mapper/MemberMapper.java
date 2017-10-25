@@ -9,7 +9,7 @@ public interface MemberMapper {
 	@Select("select * from tbl_member where mid = #{mid} and mpw = #{mpw}")
 	public MemberVO findByID(MemberDTO dto);
 	
-	@Insert("insert into tbl_member (mid, mpw, mname) values(#{mid},#{mpw}, #{mname})")
+	@Insert("insert into tbl_member (mid, mpw, mname, admin) values( #{mid}, #{mpw}, #{mname}, #{admin} )")
 	public void createID(MemberDTO dto);
 	
 	@Select("select * from tbl_member where mid = #{mid}")

@@ -15,6 +15,23 @@
 	ul.actions li {
 		padding : 0 0 0 0;
 	}
+	.tb_1{
+		width:10%;
+	}
+	.tb_2{
+		width:50%;
+	}
+	.tb_3{
+		width:30%;
+	}
+	.tb_4{
+		width:10%;
+	}
+	
+	td{
+		text-align: center;
+	}
+	
 </style>
 
 				<!-- Banner -->
@@ -22,18 +39,18 @@
 				<div class="content">
 					<header>
 					<h1>
-						RC 하우스<br /> by HTML5 UP
+						RC 하우스<br /> 창의교육 하우스
 					</h1>
 					<p>A free and fully responsive site</p>
 					</header>
-					<p> 소 개 글 </p>
+					<p> 창의교육하우스는 삶에서 요구되는 창의성을 학습할 수 있는 방법과 습관을 탐색한다. 학생들이 강의, 분반토론, 특강 및 다양한 창의게임을 통해 행복하고 의미있는 대학생활을 영위하고 미래를 대비하는 창의인재로서의 통찰력과 리더십을 가질 수 있도록 한다. </p>
 					<ul class="actions">
 						<li><a target="_blank" href="http://rc.korea.ac.kr" class="button big">Learn
 								More</a></li>
 					</ul>
 				</div>
 				<span class="image object"> <img
-					src="/resources/images/pic10.jpg" alt="" />
+					src="/resources/img/main.png" alt="학교정문" />
 				</span> </section>
 
 				<hr class="major" />
@@ -79,10 +96,10 @@
 					<table class="alt">
 						<thead>
 							<tr>
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>조회수</th>
+								<th class='tb_1'>번호</th>
+								<th class='tb_2'>제목</th>
+								<th class='tb_3'>작성자</th>
+								<th class='tb_4'>조회수</th>
 							</tr>
 						</thead>
 						<tbody>

@@ -36,7 +36,7 @@
         </button>
 
         <div class="modal-header" align="center">
-            <img class="img-circle" id="img_logo" src="http://www.ohfun.net/contents/article/images/2016/0323/1458711046948575.jpg">
+            <img class="img-circle" id="img_logo" src="/resources/img/logo.png">
         </div>
 
         <!-- Begin # DIV Form -->
@@ -44,17 +44,17 @@
             <!-- Begin # Login Form -->
             <form id="login-form" method='post'>
                 <div class="modal-body">
-                    <input name = "mid" id="login_username" class="form-control" type="text" placeholder="Username" required>
-                    <input name = "mpw" id="login_password" class="form-control" type="password" placeholder="Password" required>
+                    <input value='user00' name = "mid" id="login_username" class="form-control" type="text" placeholder="Username" required>
+                    <input value='user00' name = "mpw" id="login_password" class="form-control" type="password" placeholder="Password" required>
                     <div class="checkbox">
                         <label>
-                            <input name='auto' type="checkbox"> Remember me
+                            <input name='auto' type="checkbox" checked> Remember me
                         </label>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <div>
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                        <button type="submit" class="btn btn-lg btn-block">Login</button>
                     </div>
 
                         <div>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="modal-footer">
                     <div>
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+                        <button type="submit" class="btn btn-lg btn-block">Send</button>
                     </div>
 
                         <div>
@@ -95,6 +95,10 @@
                             <input name='mname' id="register_username" class="form-control" type="text" placeholder="Username" required>
                             <input name='mid'id="register_id" class="form-control" type="text" placeholder="Id" required>
                             <input name='mpw'id="register_password" class="form-control" type="password" placeholder="Password" required>
+                        	<input type="radio" name="admin" value="n" checked /><label>멘티</label>
+							<input type="radio" name="admin" value="y"/><label>멘토</label>
+							
+							
                         </div>
 
 
@@ -104,7 +108,7 @@
                 </div>
                 <div class="modal-footer">
                     <div>
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                        <button type="submit" class="btn btn-lg btn-block">Register</button>
                     </div>
                     <div>
                         <button id="register_login_btn" type="button" class="btn btn-link links_left">Log In</button>

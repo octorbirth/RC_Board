@@ -32,12 +32,12 @@ public class LoginController {
     @PostMapping("/login")
     public void loginPost(MemberDTO info, Model model) {
         MemberDTO dto = new MemberDTO();
-        log.info("받은 이름 이름: " + info.getMname());
+        
         dto.setMid(info.getMid());
         dto.setMpw(info.getMpw());
         dto.setMname(info.getMname());
+        dto.setAdmin(info.getAdmin());
         
-        log.info("회원가입 이름: " + dto.getMname());
         if(dto.getMname() != null) { // 회원가입 시도라면... (mname이 존재)
         	service.create(dto);
         	model.addAttribute("memberVO", dto);
@@ -48,7 +48,7 @@ public class LoginController {
     }
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
-    	log.info("logout.....................");
+    	
     	
     	Object obj = session.getAttribute("memberVO");
 
