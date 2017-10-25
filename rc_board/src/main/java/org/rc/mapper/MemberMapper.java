@@ -1,5 +1,7 @@
 package org.rc.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.rc.dto.MemberDTO;
@@ -14,4 +16,7 @@ public interface MemberMapper {
 	
 	@Select("select * from tbl_member where mid = #{mid}")
 	public MemberVO getVO(MemberDTO dto);
+	
+	@Select("select * from tbl_member where admin = 'n'")
+	public List<MemberVO> getMentee();
 }

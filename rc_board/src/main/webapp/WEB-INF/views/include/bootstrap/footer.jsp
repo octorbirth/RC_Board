@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 			</div>
 		</div>
@@ -18,14 +18,14 @@
 				<h2>Menu</h2>
 				</header>
 				<ul>
+					
+					<li><a href="#">프로필</a></li>
+					<c:if test="${memberVO.admin == 'y'}">
 					<li><a href="#">출결관리</a></li>
 					<li><span class="opener">수강생 명단</span>
-						<ul>
-							<li><a href="#">친절한 진복씨</a></li>
-							<li><a href="#">이준학 짱짱맨</a></li>
-							<li><a href="#">Red 빈님</a></li>
-						</ul></li>
-					<li><a href="#">질문</a></li>
+						<ul class="menteeUL">
+						</ul></li>	
+					</c:if>
 				</ul>
 				</nav>
 
@@ -57,7 +57,21 @@
 	<script src="/resources/assets/js/util.js"></script>
 	<script src="/resources/assets/js/main.js"></script>
 
-
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+	
+	<script>
+	var str = "";	
+	$.getJSON("/board/listMentee/", function(arr){
+        for(var i=0; i< arr.length; i++){	
+        	str += "<li><a href='#'>"+arr[i].mname +"</a></li>"
+        }
+        $(".menteeUL").html(str);
+  });
+	</script>
+	
 </body>
 
 </html>

@@ -83,10 +83,8 @@ textarea {
 		<li><a id="createBoard"class="button special">등록하기</a></li>
 	</ul>
 
-<script
-  src="https://code.jquery.com/jquery-3.2.1.js"
-  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-  crossorigin="anonymous"></script>
+<%@include file="/WEB-INF/views/include/bootstrap/footer.jsp"%>
+
 <script>
 $(document).ready(function () {
 
@@ -180,4 +178,3 @@ $(document).ready(function () {
 </script>
 
 
-<%@include file="/WEB-INF/views/include/bootstrap/footer.jsp"%>

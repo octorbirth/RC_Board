@@ -133,9 +133,6 @@
 
 <%@include file="/WEB-INF/views/include/bootstrap/footer.jsp"%>
 
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-		crossorigin="anonymous"></script>
 
 	<script src="/resources/js/pagefunc.js"></script>
 	<script>

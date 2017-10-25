@@ -1,5 +1,7 @@
 package org.rc.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.rc.dto.MemberDTO;
@@ -31,6 +33,11 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO autoLogin(MemberDTO dto) {
 		
 		return mapper.getVO(dto);
+	}
+
+	@Override
+	public List<MemberVO> getList() {
+		return mapper.getMentee();
 	}
 	
 	
