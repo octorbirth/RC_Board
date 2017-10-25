@@ -27,5 +27,13 @@
 	</bean>
     
     <mybatis-spring:scan base-package="org.rc.mapper"/>
+    
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    
      <context:component-scan base-package="org.rc.service"></context:component-scan>
+	 <context:component-scan base-package="org.rc.aop"></context:component-scan>
+
+	<aop:config>
+    </aop:config>
+
 </beans>
