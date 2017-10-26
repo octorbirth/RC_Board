@@ -25,6 +25,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Inject
 	private AttachMapper attachMapper;
+	
 	@Transactional
 	@Override
 	public void register(BoardDTO dto) {
