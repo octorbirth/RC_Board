@@ -19,4 +19,7 @@ public interface MemberMapper {
 	
 	@Select("select * from tbl_member where admin = 'n'")
 	public List<MemberVO> getMentee();
+
+	@Select("select * from tbl_member where mid = #{mid}")
+	public MemberVO getInfo(MemberDTO dto);
 }

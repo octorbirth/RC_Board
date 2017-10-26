@@ -39,6 +39,12 @@ public class MemberServiceImpl implements MemberService{
 	public List<MemberVO> getList() {
 		return mapper.getMentee();
 	}
+
+	@Override
+	public MemberVO getInfo(MemberDTO dto) {
+		
+		return mapper.getInfo(dto);
+	}
 	
 	
 	

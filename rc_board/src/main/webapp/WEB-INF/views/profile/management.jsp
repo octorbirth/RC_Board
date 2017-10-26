@@ -17,6 +17,13 @@
 	<div class="6u 12u$(small)">
 		<span class="image fit"><img
 			src="/resources/img/logo.png" alt="" /></span>
+		<center><div class='uploadDiv'>
+			<form id='uploadForm'>
+				<input id='uploadFile' type='file' name='file'> <input
+					type='submit' class="button icon fa-upload" value='업로드'>
+			</form>
+		</div>
+		</center>
 	</div>
 	<div class="6u$ 12u$(small)">
 		<h2 id="content">상세 정보</h2>

@@ -19,7 +19,7 @@
 				</header>
 				<ul>
 					
-					<li><a href="/profile/view?mid=${memberVO.mid}">프로필</a></li>
+					<li><a href="/profile/management?mid=${memberVO.mid}">프로필</a></li>
 					<c:if test="${memberVO.admin == 'y'}">
 					<li><a href="#">출결관리</a></li>
 					<li><span class="opener">수강생 명단</span>

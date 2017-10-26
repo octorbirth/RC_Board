@@ -10,4 +10,5 @@ public interface MemberService {
 	public void create(MemberDTO dto);
 	public MemberVO autoLogin(MemberDTO dto);
 	public List<MemberVO> getList();
+	public MemberVO getInfo(MemberDTO dto);
 }
