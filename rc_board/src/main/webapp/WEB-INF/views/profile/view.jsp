@@ -30,5 +30,7 @@
 		</blockquote>
 	</div>
 </div>
-
+<ul class="actions" align="right">
+	<li data-oper='li'><a href="/board/list" class="button special">돌아가기</a></li>
+</ul>
 <%@include file="/WEB-INF/views/include/bootstrap/footer.jsp"%>

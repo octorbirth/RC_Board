@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.rc.dto.MemberDTO;
 import org.rc.vo.MemberVO;
 
@@ -22,4 +23,7 @@ public interface MemberMapper {
 
 	@Select("select * from tbl_member where mid = #{mid}")
 	public MemberVO getInfo(MemberDTO dto);
+
+	@Update("update tbl_member set  mname= #{mname}, stuid= #{stuid}, dept = #{dept}, phone = #{phone}, email = #{email}, mpw = #{mpw}  where mid = #{mid}")
+	public void updateInfo(MemberDTO vo);
 }

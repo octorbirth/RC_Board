@@ -45,6 +45,12 @@ public class MemberServiceImpl implements MemberService{
 		
 		return mapper.getInfo(dto);
 	}
+
+	@Override
+	public void updateInfo(MemberDTO dto) {
+		mapper.updateInfo(dto);
+		return ;
+	}
 	
 	
 	
