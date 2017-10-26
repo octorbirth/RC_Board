@@ -21,7 +21,7 @@
 					
 					<li><a href="/profile/management">프로필</a></li>
 					<c:if test="${memberVO.admin == 'y'}">
-					<li><a href="#">출결관리</a></li>
+					<li><a href="/attend/list">출결관리</a></li>
 					<li><span class="opener">수강생 명단</span>
 						<ul class="menteeUL">
 						</ul></li>	

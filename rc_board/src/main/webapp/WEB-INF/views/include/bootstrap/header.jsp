@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="/resources/assets/css/main.css?ver=5" />
+<link rel="stylesheet" href="/resources/assets/css/main.css?ver=6" />
 </head>
 <body>
 	<style>
