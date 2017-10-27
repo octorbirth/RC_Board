@@ -18,7 +18,7 @@
 				<h2>Menu</h2>
 				</header>
 				<ul>
-					
+					<li><a href="/board/list">Home</a></li>
 					<li><a href="/profile/management">프로필</a></li>
 					<c:if test="${memberVO.admin == 'y'}">
 					<li><a href="/attend/list">출결관리</a></li>

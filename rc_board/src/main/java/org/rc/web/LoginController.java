@@ -53,8 +53,7 @@ public class LoginController {
     	Object obj = session.getAttribute("memberVO");
 
    	  	if (obj != null) {
-   	  		MemberVO vo = (MemberVO) obj;
-   	  		session.removeAttribute("login");
+   	  		session.removeAttribute("memberVO");
    	  		session.invalidate();
 	   	  
    	  		Cookie loginCookie = WebUtils.getCookie(request, "login");
@@ -67,8 +66,6 @@ public class LoginController {
 	   	  
    	  		}
 	   	} 
-
-   	  	return "redirect:/login";
-    	
+   	  	return "redirect:/login";    	
     }
 }

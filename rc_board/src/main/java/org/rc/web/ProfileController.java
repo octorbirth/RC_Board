@@ -36,10 +36,10 @@ public class ProfileController {
 	}
 	
 	@PostMapping("/management")
-	public String modify(MemberDTO dto, Model model) {
+	public void modify(MemberDTO dto, Model model) {
 		service.updateInfo(dto);
-		model.addAttribute("dto", dto);
-		return "redirect:/profile/management";
+		model.addAttribute("MemberDTO", dto);
+		return;
 	}
 	
 }
