@@ -24,6 +24,6 @@ public interface MemberMapper {
 	@Select("select * from tbl_member where mid = #{mid}")
 	public MemberVO getInfo(MemberDTO dto);
 
-	@Update("update tbl_member set  mname= #{mname}, stuid= #{stuid}, dept = #{dept}, phone = #{phone}, email = #{email}, mpw = #{mpw}  where mid = #{mid}")
+	@Update("update tbl_member set  image=#{image}, mname= #{mname}, stuid= #{stuid}, dept = #{dept}, phone = #{phone}, email = #{email}, mpw = #{mpw}  where mid = #{mid}")
 	public void updateInfo(MemberDTO vo);
 }

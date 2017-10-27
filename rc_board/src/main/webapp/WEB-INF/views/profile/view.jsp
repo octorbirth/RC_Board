@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/WEB-INF/views/include/bootstrap/header.jsp"%>
 <style>
@@ -15,8 +16,18 @@
 <div class="row">
 
 	<div class="6u 12u$(small)">
-		<span class="image fit"><img
-			src="/resources/img/logo.png" alt="" /></span>
+		<span class="image fit">
+		
+		<c:if test="${ empty members.image }">
+			<img src="/resources/img/profile.jpg" alt="" />
+		</c:if>
+		<c:if test="${ !empty members.image }">
+			<img src='/upload/showprofile/${members.image }' alt="" />
+		</c:if>
+		
+		
+		
+		</span>
 	</div>
 	<div class="6u$ 12u$(small)">
 		<h2 id="content">상세 정보</h2>

@@ -81,10 +81,51 @@ public class UploadController {
         return map;        
     }
 	
+	@PostMapping("/profile")
+    public @ResponseBody Map<String, String> uploadProfile(MultipartFile file) throws Exception {
+        
+		String original = file.getOriginalFilename(); // 화면 표시용
+		
+        UUID uuid = UUID.randomUUID();
+        // 파일명 중복처리
+        String uploadName = uuid.toString() + "_" + file.getOriginalFilename(); // DB 및 실제 파일 업로드 이름
+        
+        OutputStream out = new FileOutputStream("C:\\zupload\\"+ uploadName); // 파일 경로 
+        
+        String fileType = original.substring(original.lastIndexOf(".") + 1);
+
+        
+        Map<String, String> map = new HashMap();
+        if(MediaUtils.checkType(fileType) != null) { // 이미지 타입이라면
+        	FileCopyUtils.copy(file.getInputStream(), out); // 실제 파일 자체 저장
+        	BufferedImage origin = ImageIO.read(file.getInputStream());	
+        	BufferedImage desImg = Scalr.resize(origin,
+                    Scalr.Method.AUTOMATIC,
+                    Scalr.Mode.FIT_TO_HEIGHT, 100);
+        	String thumbnailName = "s_" + uploadName;    
+        	ImageIO.write(desImg, "jpg",  new FileOutputStream("C:\\zupload\\" + thumbnailName));
+        	map.put("thumbName", thumbnailName);
+        	map.put("type", "imgFile");
+        }else {
+        	map.put("type", "File");
+        }
+        
+        map.put("original", file.getOriginalFilename());
+        map.put("uploadName",uploadName);
+
+        return map;        
+    }
+	
+	
 	
 	@GetMapping("/thumb/{thumbName:.+}")
     public @ResponseBody byte[] display(@PathVariable("thumbName") String thumbName) throws Exception {
         File file = new File("C:\\zzz\\" + thumbName);
+        return FileUtils.readFileToByteArray(file);
+    }
+	@GetMapping("/showprofile/{uploadName:.+}")
+    public @ResponseBody byte[] showProfile(@PathVariable("uploadName") String uploadName) throws Exception {
+        File file = new File("C:\\zupload\\" + uploadName);
         return FileUtils.readFileToByteArray(file);
     }
 	
