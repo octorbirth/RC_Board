@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@include file="/WEB-INF/views/include/bootstrap/header.jsp"%>
@@ -19,12 +20,15 @@
 		width:10%;
 	}
 	.tb_2{
-		width:50%;
+		width:40%;
 	}
 	.tb_3{
-		width:30%;
+		width:20%;
 	}
 	.tb_4{
+		width:20%;
+	}
+	.tb_5{
 		width:10%;
 	}
 	
@@ -99,7 +103,8 @@
 								<th class='tb_1'>번호</th>
 								<th class='tb_2'>제목</th>
 								<th class='tb_3'>작성자</th>
-								<th class='tb_4'>조회수</th>
+								<th class='tb_4'>작성일</th>
+								<th class='tb_5'>조회수</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -117,6 +122,8 @@
 									<span> ( ${item.replycnt} ) </span>
 									 </td>
 									<td>${item.writer}</td>
+									<td><fmt:formatDate value="${item.regdate}"
+			pattern="yyyy-MM-dd HH:mm" /></td>
 									<td>${item.viewcnt}</td>
 								</tr>
 							</c:forEach>
