@@ -68,7 +68,7 @@ public class AttendController {
 				attendlist[i] = "n";
 			}
 			flag = i+1;
-			//log.info(alist[i] + " 출석여부 : " + attend[i]);
+			//log.info(mlist[i] + " 출석여부 : " + attend[i]);
 		}
 		for(int i = flag; i< mlist.length; i++) {
 			attendlist[i] = "n";
@@ -91,6 +91,46 @@ public class AttendController {
 	public String remove(AttendDTO dto) {
 		lectureService.remove(dto.getLno());
 		return "redirect:/attend/list";
+	}
+	@PostMapping("/modify")
+	public String modify(MemberDTO dto, Integer lno) {
+		
+		
+		AttendDTO attendDto = new AttendDTO();
+		attendDto.setMlist(dto.getMlist());
+		attendDto.setNamelist(dto.getNamelist());
+		
+		
+		String mlist[] = dto.getMlist();
+		String alist[] = dto.getAlist();
+		String []attendlist = new String[mlist.length];
+		//log.info("=======================");
+		int flag = 0, count = 0;
+		for (int i = 0; i < alist.length; i++) {
+			if(alist[i] != null) {
+				attendlist[i] = "y";
+				count++;
+			}else {
+				attendlist[i] = "n";
+			}
+			flag = i+1;
+			//log.info("수정된 " + mlist[i] + " 출석여부 : " + attendlist[i]);
+		}
+		for(int i = flag; i< mlist.length; i++) {
+			attendlist[i] = "n";
+			//log.info("수정된 " + mlist[i] + " 출석여부 : " + attendlist[i]);
+		}
+		
+		//log.info("=======================");
+		attendDto.setAttendlist(attendlist);
+		attendDto.setCount(count);
+		attendDto.setLno(lno);
+		
+		
+		String strLno = Integer.toString(lno);
+		attendService.modify(attendDto);
+		return "redirect:/attend/view?lno=" + strLno ;
+		// 객체를 따로 보내지 않으면 자동으로 앞 글자를 소문자로 해서 처리한다.
 	}
 	
 }

@@ -91,35 +91,38 @@ td {
 <h2>현황</h2>
 </header>
 <hr class="major" />
-<div class="table-wrapper">
-	<table>
-		<thead>
-			<tr>
-				<th>이름</th>
-				<th>출석 여부</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="item" items="${list}" varStatus="status">
+<form method='post' id='mainForm'>
+	<div class="table-wrapper">
+		<table>
+			<thead>
 				<tr>
-					<td>${item.mname}</td>
-					<td><label class='switch'> 
-					<c:if test="${item.attend == 'y' }">
-						<input name='alist[${status.count-1}]' value='${item.mid}' type='checkbox' checked>		
-					</c:if>
-					 <c:if test="${item.attend == 'n' }">
-						<input name='alist[${status.count-1}]' value='${item.mid}' type='checkbox'>
-					</c:if>
-					 <span class='slider round'></span></label></td>
-					<input type='hidden' name='mlist[${status.count-1}]'
-						value='${item.mid}'>
-					<input type='hidden' name='namelist[${status.count-1}]'
-						value='${item.mname}'>
+					<th>이름</th>
+					<th>출석 여부</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-</div>
+			</thead>
+			<tbody>
+				<c:forEach var="item" items="${list}" varStatus="status">
+					<tr>
+						<td>${item.mname}</td>
+						<td><label class='switch'> 
+						<c:if test="${item.attend == 'y' }">
+							<input name='alist[${status.count-1}]' value='${item.mid}' type='checkbox' checked>		
+						</c:if>
+						 <c:if test="${item.attend == 'n' }">
+							<input name='alist[${status.count-1}]' value='${item.mid}' type='checkbox'>
+						</c:if>
+						 <span class='slider round'></span></label></td>
+						<input type='hidden' name='mlist[${status.count-1}]'
+							value='${item.mid}'>
+						<input type='hidden' name='namelist[${status.count-1}]'
+							value='${item.mname}'>
+					</tr>
+				</c:forEach>
+				<input type='hidden' name='lno' value='${lno}'>
+			</tbody>
+		</table>
+	</div>
+</form>
 <ul class="actions" align="right">
 	<li><a href="#" id="deleteBoard" class="button default">삭제</a></li>
 	<li><a href="#" id="modBoard" class="button default">수정</a></li>
@@ -143,9 +146,10 @@ td {
 		actionForm.attr("action","/attend/remove").submit();
 	});
 
-	
+	var mainForm = $("#mainForm");
 	$("#modBoard").click(function(e) {
 		e.preventDefault();
+		mainForm.attr("action", "/attend/modify").submit();
 	});
 </script>
 

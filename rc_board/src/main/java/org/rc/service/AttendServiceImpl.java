@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.rc.dto.AttendDTO;
+import org.rc.dto.MemberDTO;
 import org.rc.mapper.AttendMapper;
 import org.rc.mapper.BoardMapper;
 import org.rc.mapper.LectureMapper;
@@ -37,5 +38,19 @@ public class AttendServiceImpl implements AttendService {
 	public List<AttendDTO> getView(Integer lno) {
 		
 		return mapper.getView(lno);
+	}
+
+	@Override
+	public void modify(AttendDTO dto) {
+		lectureMapper.updateAmount(dto.getCount(), dto.getLno());
+		mapper.deleteAttend(dto.getLno());
+		String []mlist = dto.getMlist();
+		String []attendlist = dto.getAttendlist();
+		String []namelist = dto.getNamelist();
+		for (int i = 0; i < mlist.length; i++) {
+			mapper.updateAttend(dto.getLno() ,mlist[i], attendlist[i], namelist[i]);
+		}
+		
+		return;
 	}
 }
