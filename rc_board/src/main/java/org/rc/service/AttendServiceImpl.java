@@ -1,6 +1,7 @@
 package org.rc.service;
 
 import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -25,10 +26,16 @@ public class AttendServiceImpl implements AttendService {
 	public void create(AttendDTO dto) {
 		lectureMapper.create(dto.getCount());
 		String []mlist = dto.getMlist();
-		String []attend = dto.getAttend();
+		String []attendlist = dto.getAttendlist();
 		String []namelist = dto.getNamelist();
 		for (int i = 0; i < mlist.length; i++) {
-			mapper.create(mlist[i], attend[i], namelist[i]);
+			mapper.create(mlist[i], attendlist[i], namelist[i]);
 		}
+	}
+
+	@Override
+	public List<AttendDTO> getView(Integer lno) {
+		
+		return mapper.getView(lno);
 	}
 }

@@ -76,8 +76,8 @@ td{
 			<c:forEach var="item" items="${list}">
 			<tr>
 				<td>${item.lno}</td>
-				<td><fmt:formatDate value="${item.regdate}"
-			pattern="yyyy-MM-dd HH:mm" /></td>
+				<td><a href='view?lno=${item.lno}'><fmt:formatDate value="${item.regdate}"
+			pattern="yyyy-MM-dd HH:mm" /></a></td>
 				<td>${item.amount}</td>
 			</tr>
 			</c:forEach>

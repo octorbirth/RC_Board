@@ -57,33 +57,34 @@ public class AttendController {
 		
 		String mlist[] = dto.getMlist();
 		String alist[] = dto.getAlist();
-		String []attend = new String[mlist.length];
+		String []attendlist = new String[mlist.length];
 		
 		int flag = 0, count = 0;
 		for (int i = 0; i < alist.length; i++) {
 			if(alist[i] != null) {
-				attend[i] = "y";
+				attendlist[i] = "y";
 				count++;
 			}else {
-				attend[i] = "n";
+				attendlist[i] = "n";
 			}
 			flag = i+1;
 			//log.info(alist[i] + " 출석여부 : " + attend[i]);
 		}
 		for(int i = flag; i< mlist.length; i++) {
-			attend[i] = "n";
+			attendlist[i] = "n";
 			//log.info(mlist[i] + " 출석여부 : " + attend[i]);
 		}
 		
 		//log.info("=======================");
-		attendDto.setAttend(attend);
+		attendDto.setAttendlist(attendlist);
 		attendDto.setCount(count);
 		attendService.create(attendDto);
 		return "redirect:/attend/list";
 	}
 	
 	@GetMapping("/view")
-	public void view() {
+	public void view(Integer lno, Model model) {
+		model.addAttribute("list", attendService.getView(lno));
 		return;
 	}
 	
