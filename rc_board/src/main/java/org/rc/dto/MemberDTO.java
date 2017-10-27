@@ -10,5 +10,7 @@ public class MemberDTO {
 	private String admin;
 	private String dept, stuid, ban, phone, email, image;
 	private Date regdate;
-	
+	private String[] mlist;
+	private String[] alist;
+	private String[] namelist;
 }

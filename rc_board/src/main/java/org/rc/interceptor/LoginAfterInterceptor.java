@@ -23,8 +23,8 @@ public class LoginAfterInterceptor extends HandlerInterceptorAdapter {
             return;
         }
 		
-		String auto = request.getParameter("auto");
 		
+		String auto = request.getParameter("auto");
 		
 		Map<String, Object> map = modelAndView.getModel();  // model을 가져온다.
         
