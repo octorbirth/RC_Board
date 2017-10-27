@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@include file="/WEB-INF/views/include/bootstrap/header.jsp"%>
 <link rel="stylesheet" href="/resources/assets/css/graph.css" />
 <style>
@@ -72,16 +73,14 @@ td{
 			</tr>
 		</thead>
 		<tbody>
+			<c:forEach var="item" items="${list}">
 			<tr>
-				<td>Item1</td>
-				<td>Ante turpis integer aliquet porttitor.</td>
-				<td>29.99</td>
+				<td>${item.lno}</td>
+				<td><fmt:formatDate value="${item.regdate}"
+			pattern="yyyy-MM-dd HH:mm" /></td>
+				<td>${item.amount}</td>
 			</tr>
-			<tr>
-				<td>Item2</td>
-				<td>Vis ac commodo adipiscing arcu aliquet.</td>
-				<td>19.99</td>
-			</tr>
+			</c:forEach>
 		</tbody>
 
 	</table>

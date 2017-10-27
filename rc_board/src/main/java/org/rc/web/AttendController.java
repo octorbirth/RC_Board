@@ -7,6 +7,7 @@ import org.rc.dto.BoardDTO;
 import org.rc.dto.MemberDTO;
 import org.rc.dto.SearchCriteria;
 import org.rc.service.AttendService;
+import org.rc.service.LectureService;
 import org.rc.service.MemberService;
 import org.rc.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,13 @@ public class AttendController {
 	@Autowired
 	private AttendService attendService;
 	
+	@Autowired
+	private LectureService lectureService;
+	
+	
 	@GetMapping("/list")
-	public void list() {
+	public void list(Model model) {
+		model.addAttribute("list", lectureService.list());
 		return;
 	}
 	@GetMapping("/register")
@@ -43,7 +49,7 @@ public class AttendController {
 	}
 	@PostMapping("/register")
 	public String register(MemberDTO dto) {
-		log.info("=======================");
+		//log.info("=======================");
 		AttendDTO attendDto = new AttendDTO();
 		attendDto.setMlist(dto.getMlist());
 		attendDto.setNamelist(dto.getNamelist());
@@ -62,14 +68,14 @@ public class AttendController {
 				attend[i] = "n";
 			}
 			flag = i+1;
-			log.info(alist[i] + " 출석여부 : " + attend[i]);
+			//log.info(alist[i] + " 출석여부 : " + attend[i]);
 		}
 		for(int i = flag; i< mlist.length; i++) {
 			attend[i] = "n";
-			log.info(mlist[i] + " 출석여부 : " + attend[i]);
+			//log.info(mlist[i] + " 출석여부 : " + attend[i]);
 		}
 		
-		log.info("=======================");
+		//log.info("=======================");
 		attendDto.setAttend(attend);
 		attendDto.setCount(count);
 		attendService.create(attendDto);
