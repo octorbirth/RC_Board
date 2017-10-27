@@ -8,4 +8,6 @@ public interface LectureService {
 
 	public List<LectureDTO> list();
 
+	public void remove(int lno);
+
 }

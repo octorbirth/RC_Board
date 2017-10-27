@@ -118,22 +118,17 @@ td {
 				</tr>
 			</c:forEach>
 		</tbody>
-
-
-
-
-
-		<tfoot>
-			<tr>
-				<td colspan="2">100.0</td>
-			</tr>
-		</tfoot>
 	</table>
 </div>
 <ul class="actions" align="right">
-	<li><a href="/attend/list" id="createBoard" class="button special">등록하기</a></li>
+	<li><a href="#" id="deleteBoard" class="button default">삭제</a></li>
+	<li><a href="#" id="modBoard" class="button default">수정</a></li>
 	<li><a href="/attend/list" id="createBoard" class="button special">이전으로</a></li>
 </ul>
+
+<form id='actionForm' method="post">
+	<input type='hidden' name='lno' value='${lno}'>
+</form>
 
 <%@include file="/WEB-INF/views/include/bootstrap/footer.jsp"%>
 
@@ -141,6 +136,16 @@ td {
 	integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
 	crossorigin="anonymous"></script>
 
+<script>
+	var actionForm = $("#actionForm");
+	$("#deleteBoard").click(function(e) {
+		e.preventDefault();
+		actionForm.attr("action","/attend/remove").submit();
+	});
 
-
+	
+	$("#modBoard").click(function(e) {
+		e.preventDefault();
+	});
+</script>
 

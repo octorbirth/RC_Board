@@ -2,6 +2,7 @@ package org.rc.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -14,4 +15,7 @@ public interface AttendMapper {
 
 	@Select("select * from tbl_attend where lno = #{lno}")
 	public List<AttendDTO> getView(Integer lno);
+
+	@Delete("delete from tbl_attend where lno = #{lno}")
+	public void deleteAttend(int lno);
 }

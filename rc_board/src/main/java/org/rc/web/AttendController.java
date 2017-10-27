@@ -83,9 +83,14 @@ public class AttendController {
 	}
 	
 	@GetMapping("/view")
-	public void view(Integer lno, Model model) {
+	public void view(@ModelAttribute("lno") Integer lno, Model model) {
 		model.addAttribute("list", attendService.getView(lno));
 		return;
+	}
+	@PostMapping("/remove")
+	public String remove(AttendDTO dto) {
+		lectureService.remove(dto.getLno());
+		return "redirect:/attend/list";
 	}
 	
 }

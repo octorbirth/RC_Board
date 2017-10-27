@@ -113,11 +113,6 @@ td {
 					</tr>
 				</c:forEach>
 			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="2">100.0</td>
-				</tr>
-			</tfoot>
 		</table>
 	</div>
 </form>
