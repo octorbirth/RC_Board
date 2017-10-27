@@ -6,7 +6,9 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.rc.dto.AttendDTO;
+import org.rc.dto.MemberDTO;
 
 public interface AttendMapper {
 
@@ -23,4 +25,7 @@ public interface AttendMapper {
 	public void updateAttend(@Param("lno") int lno, @Param("mid") String mid, @Param("attend") String attend, @Param("mname") String mname);
 
 	public List<AttendDTO> getStudentInfo();
+
+	@Update("update tbl_attend set mname = #{mname} where mid = #{mid}")
+	public void updateInfo(MemberDTO dto);
 }

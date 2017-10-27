@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.rc.dto.MemberDTO;
+import org.rc.mapper.AttendMapper;
 import org.rc.mapper.MemberMapper;
 import org.rc.vo.MemberVO;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class MemberServiceImpl implements MemberService{
 	@Inject
 	private MemberMapper mapper;
 
+	@Inject
+	private AttendMapper attendMapper;
+	
 	@Override
 	public MemberVO login(MemberDTO dto) {
 		return mapper.findByID(dto);
@@ -49,6 +53,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void updateInfo(MemberDTO dto) {
 		mapper.updateInfo(dto);
+		attendMapper.updateInfo(dto);
 		return ;
 	}
 	

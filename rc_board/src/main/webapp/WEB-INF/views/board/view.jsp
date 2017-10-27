@@ -59,6 +59,11 @@ img {
 .listFont{
 	font-size: 1.2em;
 }
+.customFont{
+	font-size: 0.7em;
+	color : gray;
+}
+
 </style>
 
 
@@ -190,13 +195,14 @@ $.getJSON("/upload/list/" + ${board.bno}, function(arr){
 		      var str = "";
 		      $.getJSON("/reply/list/" + ${board.bno}, function(arr){
 		            for(var i=0; i< arr.length; i++){
-		            	
+		            	var time = new Date(arr[i].replydate);
+		            	var replyDate = (time.getFullYear()+"-"+(time.getMonth()+1)+"-"+ time.getDate());
 		            	if(arr[i].rno === arr[i].gno){ // 댓글인 경우
 		            		str += " <hr>"
 		            		str += " <div class='media'> ";
 		            		str += " <img class='d-flex mr-3' src='#' alt='" + arr[i].replyer +" '> ";
 		            		str += " <div class='media-body'> "
-		            		str += " <h5 class='mt-0'>" + arr[i].replyer + "</h5> ";
+		            		str += " <h5 class='mt-0'>" + arr[i].replyer +" <span class='customFont'> | "+ replyDate +" </span> " + "</h5> ";
 		            		if(arr[i].garbage === 'n'){
 		            			str += " <span class='fr'> <a href='#' id='delRe' data-rno='"+arr[i].rno+"'>삭제</a> | <a href='#' id='modRe' data-rno='"+arr[i].rno+"'>수정</a></span>"	
 		            		}
