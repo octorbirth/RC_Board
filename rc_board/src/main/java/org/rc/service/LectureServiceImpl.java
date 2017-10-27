@@ -31,4 +31,10 @@ public class LectureServiceImpl implements LectureService {
 		mapper.remove(lno);
 	}
 
+	@Override
+	public int getAmount() {
+		
+		return mapper.getAmount();
+	}
+
 }

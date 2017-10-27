@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.rc.mapper.AttendMapper">
+	<select id="getStudentInfo" resultType="AttendDTO">
+		select mname, t1.mid, IFNULL(Amount, 0) amount from 
+		(select mid, mname from tbl_member where admin = 'n') t1 left join
+		(select mid, count(*) amount from tbl_attend where attend = 'y' group by mid) t2 on t1.mid = t2.mid;
+	</select>
+
+
+
+</mapper> 

@@ -5,6 +5,7 @@ import java.util.List;
 import org.rc.dto.AttendDTO;
 import org.rc.dto.BoardDTO;
 import org.rc.dto.MemberDTO;
+import org.rc.dto.ReplyDTO;
 import org.rc.dto.SearchCriteria;
 import org.rc.service.AttendService;
 import org.rc.service.LectureService;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,6 +42,8 @@ public class AttendController {
 	@GetMapping("/list")
 	public void list(Model model) {
 		model.addAttribute("list", lectureService.list());
+		String total = Integer.toString(lectureService.getAmount());
+		model.addAttribute("total", total);
 		return;
 	}
 	@GetMapping("/register")
@@ -132,5 +136,10 @@ public class AttendController {
 		return "redirect:/attend/view?lno=" + strLno ;
 		// 객체를 따로 보내지 않으면 자동으로 앞 글자를 소문자로 해서 처리한다.
 	}
+	
+	@GetMapping("/info")
+    public @ResponseBody List<AttendDTO> list(){
+		return attendService.getStudentList();
+    }
 	
 }

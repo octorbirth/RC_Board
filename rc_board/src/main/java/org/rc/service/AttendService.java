@@ -13,4 +13,6 @@ public interface AttendService {
 
 	public void modify(AttendDTO dto);
 
+	public List<AttendDTO> getStudentList();
+
 }

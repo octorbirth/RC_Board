@@ -39,26 +39,11 @@ td{
 </div>
 <div>
 
-	<div class="row hide popup">
+	<div class="row hide popup infoDiv">
 
-		<div class="2u 12u$(small)">
-			<p>
-				남경지
-				<code> 6 / 7</code>
-			</p>
-
-		</div>
-		<div class="10u$ 12u$(small) innerDiv">
-			<div class="progress">
-				<div class="progress-bar progress-bar-primary progress-bar-striped"
-					role="progressbar" aria-valuenow="40" aria-valuemin="0"
-					aria-valuemax="100" style="width: 40%">
-					<span class="sr-only">90% Complete (success)</span>
-				</div>
-			</div>
-		</div>
+		
 	</div>
-
+	<input type='hidden' name='total' value='${total}'>
 
 
 
@@ -111,4 +96,26 @@ td{
 		$(".popup").hide("slow");
 
 	});
+	
+	function getInfo(){
+	      var str = "";
+	      var total = $("input[name='total']").val();
+	      $.getJSON("/attend/info", function(arr){
+	    	  
+	            for(var i=0; i< arr.length; i++){
+	            	var result = Math.round((arr[i].amount / total) * 100);
+	            	//arr[i].mid
+	            	str += " <div class='2u 12u$(small)'> ";
+	            	str += "<p>" + arr[i].mname+"<code> " + arr[i].amount + " / "+ total +"</code></p>";
+	            	str += "</div>";
+	            	str += "<div class='10u$ 12u$(small) innerDiv'>";
+	            	str += "<div class='progress'>";
+	            	str += "<div class='progress-bar progress-bar-primary progress-bar-striped' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width: " + result + "%'> ";
+	            	str += "</div></div></div>";
+	            }
+	            $(".infoDiv").html(str);
+	      });
+	 }
+	 getInfo();
+	
 </script>

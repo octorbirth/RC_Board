@@ -21,4 +21,6 @@ public interface AttendMapper {
 
 	@Insert("insert into tbl_attend (lno, mid, attend, mname) values (#{lno}, #{mid}, #{attend}, #{mname})")
 	public void updateAttend(@Param("lno") int lno, @Param("mid") String mid, @Param("attend") String attend, @Param("mname") String mname);
+
+	public List<AttendDTO> getStudentInfo();
 }

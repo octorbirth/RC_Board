@@ -8,6 +8,7 @@ import lombok.Data;
 public class AttendDTO {
 	private int lno;
 	private int count;
+	private int amount;
 	private String mname;
 	private String mid;
 	private String attend;

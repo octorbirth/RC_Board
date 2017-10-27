@@ -23,4 +23,7 @@ public interface LectureMapper {
 	@Update("update tbl_lecture set amount = #{amount} where lno = #{lno}")
 	public void updateAmount(@Param("amount") int amount,@Param("lno") int lno);
 
+	@Select("select count(*) from tbl_lecture")
+	public int getAmount();
+
 }

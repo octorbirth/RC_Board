@@ -10,4 +10,6 @@ public interface LectureService {
 
 	public void remove(int lno);
 
+	public int getAmount();
+
 }
