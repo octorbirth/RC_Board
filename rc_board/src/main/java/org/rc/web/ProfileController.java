@@ -32,7 +32,7 @@ public class ProfileController {
 	@GetMapping("/view")
 	public void view(MemberDTO dto, Model model) {
 		model.addAttribute("members",service.getInfo(dto));
-		
+		model.addAttribute("total",lectureService.getAmount());
 		return;
 	}
 	@GetMapping("/management")

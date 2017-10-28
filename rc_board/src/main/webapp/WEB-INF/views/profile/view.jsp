@@ -37,11 +37,39 @@
 		<p>학과 : ${members.dept }</p>
 		<p>연락처 : ${members.phone }</p>
 		<p>이메일 : ${members.email }</p>
-		<p>출석 : 6 / 7</p>
+		<div class='attendDiv' ></div>
 		</blockquote>
 	</div>
+	<input type='hidden' name='total' value='${total}'>
 </div>
 <ul class="actions" align="right">
 	<li data-oper='li'><a href="/board/list" class="button special">돌아가기</a></li>
 </ul>
 <%@include file="/WEB-INF/views/include/bootstrap/footer.jsp"%>
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+
+<script>
+
+function getAttendInfo(){
+	var total = $("input[name='total']").val();;
+	var attend = 0;
+	
+	// 비동기화 처리를 하면 결과값을 기다리지 않고 화면에 표시해버린다.
+	$.ajax({ 
+		url:"/attend/count/" + '${members.mid }', // 동기화 하기 위해 getJson -> ajax
+		async: false, 
+	    success: function(result){
+	        attend = result;
+	    }
+	});
+	
+    var str = "<p>출석 :  " + attend + " / "+ total +"</p>";	
+	$(".attendDiv").html(str);
+         
+}
+getAttendInfo();
+</script>  
