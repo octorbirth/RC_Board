@@ -8,10 +8,13 @@
 	padding-left: 20%;
 }
 
-#fileBtn{
-	padding: 0 0.3em;
+#fileBtn, .fileBtn{
+	padding: 0 0.4em;
 }
-
+.fr{
+	float:right;
+	position: absolute;
+}
 </style>
 
 <header class="main"> <br>
@@ -27,13 +30,13 @@
 		</c:if>
 		<c:if test="${ !empty memberVO.image }">
 			<img id="profileImg" src='/upload/showprofile/${memberVO.image }' alt="" />
-		</c:if>
-			
+		</c:if>	
 		</span>
 		<center><div class='uploadDiv'>
 			<form id='uploadForm'>
-				<input id='uploadFile' type='file' name='file'> <input id="fileBtn"
-					type='submit' class="button icon fa-upload" value='업로드'>
+				<input id='uploadFile' type='file' name='file'> 
+				<input id= 'fileBtn' type='submit' class=" button icon fa-upload" value='등록'>
+				<span id="delProfile" class='button fileBtn'>삭제</span>	
 			</form>
 			<input type='hidden' name='image' value='${memberVO.image}'>
 		</div>
@@ -69,12 +72,23 @@
 
 <script>
 var imageName = $("input[name='image']").val();
+
 $("li[data-oper='mod']").click(function(e) {
 	e.preventDefault();
-	var mainForm = $("#mainForm");	
-	mainForm.append("<input type='hidden' name='image' value='"+imageName+"'>");
+	var mainForm = $("#mainForm");
+	if(imageName != null){
+		mainForm.append("<input type='hidden' name='image' value='"+imageName+"'>");	
+	}
 	mainForm.submit();
 });
+
+
+$("#delProfile").click(function(e) {
+	$("#profileImg").attr("src", "/resources/img/profile.jpg");
+	imageName = null;
+});
+
+
 
 $("#uploadForm").on("submit", function(e){
     e.preventDefault(); // form 태그 기능 막기
