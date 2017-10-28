@@ -15,4 +15,6 @@ public interface AttendService {
 
 	public List<AttendDTO> getStudentList();
 
+	public Integer getCount(String mid);
+
 }

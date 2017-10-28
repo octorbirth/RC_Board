@@ -59,4 +59,10 @@ public class AttendServiceImpl implements AttendService {
 		
 		return mapper.getStudentInfo();
 	}
+
+	@Override
+	public Integer getCount(String mid) {
+		
+		return mapper.getCount(mid);
+	}
 }

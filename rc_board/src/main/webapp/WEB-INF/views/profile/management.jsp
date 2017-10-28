@@ -47,15 +47,16 @@
 		<blockquote>
 		<form id='mainForm' method='post'>
 			<input type='hidden' name='mid' value='${memberVO.mid}'>
-			
+			<input type='hidden' name='admin' value='${memberVO.admin}'>
 			이름 : <input type="text" name="mname" value="${memberVO.mname }"/><br>
     		학번 : <input type="text" name="stuid" value="${memberVO.stuid }"/><br>
     		학과 : <input type="text" name="dept"  value="${memberVO.dept }"/><br>
     		연락처 : <input type="text" name="phone" value="${memberVO.phone }"/><br>
     		이메일 : <input type="text" name="email" value="${memberVO.email }"/><br>
   			비밀번호 : <input type='text' name='mpw' value='${memberVO.mpw}'><hr>
-  			<strong><h3>출석현황 : 6 / 7</h3></strong>
+  			<div class='attendDiv' ></div>
   		</form>
+  		<input type='hidden' name='total' value='${total}'>
 		</blockquote>
 	</div>
 </div>
@@ -72,7 +73,7 @@
 
 <script>
 var imageName = $("input[name='image']").val();
-
+var admin = $("input[name='admin']").val();
 $("li[data-oper='mod']").click(function(e) {
 	e.preventDefault();
 	var mainForm = $("#mainForm");
@@ -114,5 +115,28 @@ $("#uploadForm").on("submit", function(e){
     });
 });
 
+
+function getAttendInfo(){
+	var total = $("input[name='total']").val();;
+	var attend = 0;
+	
+	// 비동기화 처리를 하면 결과값을 기다리지 않고 화면에 표시해버린다.
+	$.ajax({ 
+		url:"/attend/count/" + '${memberVO.mid}', // 동기화 하기 위해 getJson -> ajax
+		async: false, 
+	    success: function(result){
+	        attend = result;
+	    }
+	});
+	
+    
+    var str = "<strong><h3>출석현황 :  " + attend + " / "+ total +"</h3></strong>";	
+	$(".attendDiv").html(str);
+         
+}
+
+if(admin === 'n'){
+	getAttendInfo();
+}
 
 </script>

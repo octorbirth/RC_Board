@@ -28,4 +28,7 @@ public interface AttendMapper {
 
 	@Update("update tbl_attend set mname = #{mname} where mid = #{mid}")
 	public void updateInfo(MemberDTO dto);
+
+	@Select("select count(*) from tbl_attend where mid = #{mid}")
+	public Integer getCount(String mid);
 }

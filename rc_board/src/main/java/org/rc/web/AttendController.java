@@ -141,5 +141,9 @@ public class AttendController {
     public @ResponseBody List<AttendDTO> list(){
 		return attendService.getStudentList();
     }
+	@GetMapping("/count/{mid}")
+    public @ResponseBody Integer AttendCount(@PathVariable("mid") String mid){
+		return attendService.getCount(mid);
+    }
 	
 }
