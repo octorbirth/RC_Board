@@ -11,6 +11,8 @@ public class ReplyDTO {
     private Date replydate;
     private String garbage;
 
+    private String mname;
+    private String image;
 }
 
 //create table tbl_reply(

@@ -114,7 +114,7 @@ img {
 <div class="12u$">
 	<textarea id ='replyBox' name="reply" id="demo-message"
 		placeholder="Enter your contents" rows="3" style="resize:none"></textarea>
-	<input id ='replyer' type='hidden' name='replyer' value='tester'>
+	<input id ='replyer' type='hidden' name='replyer' value='${memberVO.mid}'>
 	<input id ='replyBno' type='hidden' name='bno' value='${board.bno} '>
 </div>
 <ul class="actions mt" align="right">
@@ -200,9 +200,14 @@ $.getJSON("/upload/list/" + ${board.bno}, function(arr){
 		            	if(arr[i].rno === arr[i].gno){ // 댓글인 경우
 		            		str += " <hr>"
 		            		str += " <div class='media'> ";
-		            		str += " <img class='d-flex mr-3' src='#' alt='" + arr[i].replyer +" '> ";
+		            		if(arr[i].image == null){
+		            			str += " <img class='d-flex mr-3' src='/resources/img/profile.jpg' alt='" + arr[i].replyer +" '> ";
+		            		}else{
+		            			str += " <img class='d-flex mr-3' src='/upload/showprofile/" + arr[i].image + "' alt='" + arr[i].replyer +" '> ";
+		            		}
+		            		
 		            		str += " <div class='media-body'> "
-		            		str += " <h5 class='mt-0'>" + arr[i].replyer +" <span class='customFont'> | "+ replyDate +" </span> " + "</h5> ";
+		            		str += " <h5 class='mt-0'>" + arr[i].mname +" <span class='customFont'> | "+ replyDate +" </span> " + "</h5> ";
 		            		if(arr[i].garbage === 'n'){
 		            			str += " <span class='fr'> <a href='#' id='delRe' data-rno='"+arr[i].rno+"'>삭제</a> | <a href='#' id='modRe' data-rno='"+arr[i].rno+"'>수정</a></span>"	
 		            		}
@@ -230,11 +235,16 @@ $.getJSON("/upload/list/" + ${board.bno}, function(arr){
 		            		}
 		            	}else{ // 답글인 경우
 		            		str +=" <div class='media mt-3'> ";
-		            		str +=" <a class='d-flex pr-3' href='#'> ";
-		            		str +=" <img src='#' alt='"  +arr[i].replyer +"'> ";
-		            		str +=" </a> ";
+		            		
+		            		
+		            		if(arr[i].image == null){
+		            			str += " <img class='d-flex mr-3' src='/resources/img/profile.jpg' alt='"  +arr[i].replyer +"'> ";
+		            		}else{
+		            			str += " <img class='d-flex mr-3' src='/upload/showprofile/" + arr[i].image + "' alt='"  +arr[i].replyer +"'> ";
+		            		}
+		            		
 		            		str +=" <div class='media-body'> ";
-		            		str +=" <h5 class='mt-0'>"+ arr[i].replyer +"</h5> ";
+		            		str +=" <h5 class='mt-0'>"+ arr[i].mname +" <span class='customFont'> | "+ replyDate +" </span> " + "</h5> ";    
 		            		if(arr[i].garbage === 'n'){
 		            			str +=" <span class='fr'> <a href='#' id='delRe' data-rno='"+arr[i].rno+"'>삭제</a> | <a href='#' id='modRe' data-rno='"+arr[i].rno+"'>수정</a></span>"
 		            		}

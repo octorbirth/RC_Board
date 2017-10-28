@@ -7,11 +7,16 @@
  <mapper namespace="org.rc.mapper.ReplyMapper">
 
 <select id="listReply" resultType="ReplyDTO">
-select * from
+select rno, gno, bno, reply, replyer, replydate, garbage, t2.mname, t2.image from
 (
-	select * from tbl_reply where bno = #{bno}
-) as T
-order by gno desc, replydate asc;
+	select * from
+	(
+		select * from tbl_reply where bno = #{bno}
+	) as T
+	order by gno desc, replydate asc
+) t1,
+tbl_member t2
+where t1.replyer = t2.mid 
 </select>
 
 </mapper> 
