@@ -81,12 +81,12 @@ img {
 </header>
 
 <div class="fileBox">
-	<div class="box">
+	<div class="box imgDiv">
 		<ul class='imgList fileul'> 
     	</ul>
 
 	</div>
-	<div class="box">
+	<div class="box fileDiv">
 		<ul class='fileList fileul'> 
     	</ul>
 	</div>
@@ -141,6 +141,8 @@ function checkImageType(fileName){
 	var pattern = /jpg|gif|png|jpeg/i;	
 	return fileName.match(pattern);
 }
+var img_idx = 0;
+var file_idx = 0;
 
 $.getJSON("/upload/list/" + ${board.bno}, function(arr){
     for(var i=0; i< arr.length; i++){
@@ -148,29 +150,29 @@ $.getJSON("/upload/list/" + ${board.bno}, function(arr){
     	
     	if(checkImageType(arr[i])){  // 이미지 파일 이라면
     		var file = getImgInfo(arr[i]);
-    		console.log(file.fullName);
-    		console.log(file.fileName);
-    		console.log(file.thumbName);
-    		
     		str += "<li class='fileli'><div>";
 	        str += "<a target='_blank' href='/upload/thumb/"+file.fullName+"'><center><img src='/upload/thumb/"+file.thumbName+"'></div></center>";
 	        str += "<center><span class='listFont'>" + file.fileName+"</sapn></center></a>";
 	        str += "</li>";
-	        $(".imgList").append(str);  
+	        $(".imgList").append(str);
+	        img_idx++;
     		
     	}else{ // 일반 파일이라면
     		var file = getFileInfo(arr[i]);
-    		console.log(file.fullName);
-    		console.log(file.fileName);
-    		
     		str += "<li class='fileli'><div>";
          	str += "<a href='/upload/download/"+file.fullName+"'><span class='listFont'>" + file.fileName+"</sapn></a>";
   	        str += "</li>";
   	        $(".fileList").append(str);
+  	      	file_idx++;
     	}
     	
-    	
     }
+    if(img_idx === 0){
+		$(".imgDiv").addClass('hide');
+	}
+	if(file_idx === 0){
+		$(".fileDiv").addClass('hide');
+	}
 });
 		
 		var msg = '${result}';

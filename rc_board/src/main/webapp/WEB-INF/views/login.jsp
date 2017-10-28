@@ -17,11 +17,10 @@
 
 <body>
 	
-	<link href="/resources/login/login.css" rel="stylesheet">
+	<link href="/resources/login/login.css?ver=2" rel="stylesheet">
 	
 	
 	
-<p id="projectName">RC Board</p>
 <div id="login-button" class="grow">
     <img id="login-img"
          src="https://dqcgrsy5v35b9.cloudfront.net/cruiseplanner/assets/img/icons/login-w-icon.png">
@@ -44,8 +43,8 @@
             <!-- Begin # Login Form -->
             <form id="login-form" method='post'>
                 <div class="modal-body">
-                    <input value='user00' name = "mid" id="login_username" class="form-control" type="text" placeholder="Username" required>
-                    <input value='user00' name = "mpw" id="login_password" class="form-control" type="password" placeholder="Password" required>
+                    	아이디:<input value='user00' name = "mid" id="login_username" class="form-control" type="text" placeholder="Username" required><br>
+               			암호:<input value='user00' name = "mpw" id="login_password" class="form-control" type="password" placeholder="Password" required>
                     <div class="checkbox">
                         <label>
                             <input name='auto' type="checkbox" checked> Remember me
@@ -92,13 +91,11 @@
                 <div class="modal-body">
                     <div>
                         <div>
-                            <input name='mname' id="register_username" class="form-control" type="text" placeholder="Username" required>
-                            <input name='mid'id="register_id" class="form-control" type="text" placeholder="Id" required>
-                            <input name='mpw'id="register_password" class="form-control" type="password" placeholder="Password" required>
-                        	<input type="radio" name="admin" value="n" checked /><label>멘티</label>
-							<input type="radio" name="admin" value="y"/><label>멘토</label>
-							
-							
+                            	이름:<input name='mname' id="register_username" class="form-control" type="text" placeholder="Username" required><br>
+                 				아이디:<input name='mid'id="register_id" class="form-control" type="text" placeholder="Id" required><br>
+             					암호:<input name='mpw'id="register_password" class="form-control" type="password" placeholder="Password" required><br>
+                        		<input type="radio" name="admin" value="n" checked /><label>멘티</label>
+								<input type="radio" name="admin" value="y"/><label>멘토</label>
                         </div>
 
 

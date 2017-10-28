@@ -41,7 +41,6 @@
         width: 450px;
         margin: auto;
         padding: 20px 40px 40px;
-        text-align: center;
         background: #fff;
         border: 1px solid #ccc;
         z-index: 1;
@@ -113,13 +112,6 @@
         z-index:0;
     }
 
-    #projectName{
-        padding-top:10%;
-        color:white;
-        font-size: 5em;
-        text-align: center;
-        font-family: "Times New Roman", Georgia, Serif;
-    }
 
     .grow{
         animation: grow 1s linear 0s infinite alternate;
