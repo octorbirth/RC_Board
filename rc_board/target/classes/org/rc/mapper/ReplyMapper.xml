@@ -13,10 +13,9 @@ select rno, gno, bno, reply, replyer, replydate, garbage, t2.mname, t2.image fro
 	(
 		select * from tbl_reply where bno = #{bno}
 	) as T
-	order by gno desc, replydate asc
 ) t1,
 tbl_member t2
-where t1.replyer = t2.mid 
+where t1.replyer = t2.mid order by gno desc, replydate asc
 </select>
 
 </mapper> 
