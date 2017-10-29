@@ -151,5 +151,9 @@ td {
 		e.preventDefault();
 		mainForm.attr("action", "/attend/modify").submit();
 	});
+	var msg = '${result}';
+	if (msg === 'modsuccess') {
+		alert("수정되었습니다.");
+	}
 </script>
 

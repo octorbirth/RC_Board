@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>​
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -75,7 +76,7 @@ img {
 </div>
 <hr class='custom-hr'>
 <div>
-	<span> ${board.writer} </span> <span class='fr'> 조회수:
+	<span> 작성자: ${board.writer} </span> <span class='fr'> 조회수:
 		${board.viewcnt} 댓글수: ${board.replycnt}</span>
 </div>
 </header>
@@ -99,7 +100,9 @@ img {
 <br>
 
 <ul class="actions" align="right">
-	<li data-oper='mod'><a href="#" class="button special">수정 / 삭제</a></li>
+	<c:if test="${memberVO.mid == board.writer}">
+		<li data-oper='mod'><a href="#" class="button special">수정 / 삭제</a></li>
+	</c:if>
 	<li data-oper='li'><a href="#" class="button special">돌아가기</a></li>
 </ul>
 
@@ -210,7 +213,7 @@ $.getJSON("/upload/list/" + ${board.bno}, function(arr){
 		            		
 		            		str += " <div class='media-body'> "
 		            		str += " <h5 class='mt-0'>" + arr[i].mname +" <span class='customFont'> | "+ replyDate +" </span> " + "</h5> ";
-		            		if(arr[i].garbage === 'n'){
+		            		if(arr[i].garbage === 'n' && arr[i].replyer==='${memberVO.mid}' ){
 		            			str += " <span class='fr'> <a href='#' id='delRe' data-rno='"+arr[i].rno+"'>삭제</a> | <a href='#' id='modRe' data-rno='"+arr[i].rno+"'>수정</a></span>"	
 		            		}
 		            		str += " <span data-rno='"+arr[i].rno+"' data-target='modTarget' >"+ arr[i].reply +"</span>";
@@ -247,7 +250,7 @@ $.getJSON("/upload/list/" + ${board.bno}, function(arr){
 		            		
 		            		str +=" <div class='media-body'> ";
 		            		str +=" <h5 class='mt-0'>"+ arr[i].mname +" <span class='customFont'> | "+ replyDate +" </span> " + "</h5> ";    
-		            		if(arr[i].garbage === 'n'){
+		            		if(arr[i].garbage === 'n' && arr[i].replyer==='${memberVO.mid}'){
 		            			str +=" <span class='fr'> <a href='#' id='delRe' data-rno='"+arr[i].rno+"'>삭제</a> | <a href='#' id='modRe' data-rno='"+arr[i].rno+"'>수정</a></span>"
 		            		}
 		            		str += " <span data-rno='"+arr[i].rno+"' data-target='modTarget'>"+ arr[i].reply +"</span>";

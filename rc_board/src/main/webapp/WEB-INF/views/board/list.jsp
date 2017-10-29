@@ -148,6 +148,8 @@
 			alert("작업처리 완료");
 		}else if(msg === 'delsuccess'){
 			alert("삭제 되었습니다.");
+		}else if(msg === 'modsuccess'){
+			alert("수정 되었습니다.");
 		}
 
 		$(".pagination").on("click", "li", function(e){

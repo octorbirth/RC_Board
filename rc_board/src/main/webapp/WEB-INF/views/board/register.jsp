@@ -40,7 +40,7 @@ textarea {
 </header>
 
 <form method='post' id='mainForm'>
-<input type='hidden' name='writer' value ="tempName">
+<input type='hidden' name='writer' value ="${memberVO.mid}">
 <h2>제목 : </h2>
 <div class="12u$(xsmall)">
 	<input type="text" name="title" id="demo-name" value=""

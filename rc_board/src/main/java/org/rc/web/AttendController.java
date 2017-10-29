@@ -97,7 +97,7 @@ public class AttendController {
 		return "redirect:/attend/list";
 	}
 	@PostMapping("/modify")
-	public String modify(MemberDTO dto, Integer lno) {
+	public String modify(MemberDTO dto, Integer lno, RedirectAttributes rttr) {
 		
 		
 		AttendDTO attendDto = new AttendDTO();
@@ -133,6 +133,7 @@ public class AttendController {
 		
 		String strLno = Integer.toString(lno);
 		attendService.modify(attendDto);
+		rttr.addFlashAttribute("result", "modsuccess");
 		return "redirect:/attend/view?lno=" + strLno ;
 		// 객체를 따로 보내지 않으면 자동으로 앞 글자를 소문자로 해서 처리한다.
 	}
