@@ -80,6 +80,7 @@ textarea {
 	<br>
 
 	<ul class="actions" align="right">
+		<li><a href='/board/list' class="button default">이전으로</a></li>
 		<li><a id="createBoard"class="button special">등록하기</a></li>
 	</ul>
 
@@ -165,10 +166,18 @@ $(document).ready(function () {
 	});
 	$(".fileBox").on("click", ".delFile", function(e){
 		e.preventDefault();
-		var targetAttr = $(this).attr("data-file");
-    	var target = $("li[data-file='" + targetAttr + "']"); 
+		var targetAttr = $(this).attr("data-file"); // 타겟할 대상(DB에 저장된 이름이면서 실제 저장된 파일이름 UUID 사용되어진...)
+    	var target = $("li[data-file='" + targetAttr + "']");
+    	
+    	$.ajax({
+  	      url: '/upload/delete',
+  	      data: {fileName:targetAttr},
+  	      dataType:'json',
+  	      type: 'POST',
+  	      success: function(result){        
+  	      }
+  	    });
     	target.remove();
-		
 	});
 	
 });

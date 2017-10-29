@@ -85,6 +85,17 @@ $("li[data-oper='mod']").click(function(e) {
 
 
 $("#delProfile").click(function(e) {
+	var targetName = $("#profileImg").attr("src");
+	if(targetName !== null){
+		$.ajax({
+	  	      url: '/profile/delete',
+	  	      data: {fileName:targetName},
+	  	      dataType:'json',
+	  	      type: 'POST',
+	  	      success: function(result){        
+	  	      }
+	  	});
+	}
 	$("#profileImg").attr("src", "/resources/img/profile.jpg");
 	imageName = null;
 });

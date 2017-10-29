@@ -222,7 +222,17 @@ header.main>:last-child {
 	$(".fileBox").on("click", ".delFile", function(e){ // 화면 삭제 제어
 		e.preventDefault();
 		var targetAttr = $(this).attr("data-file");
-    	var target = $("li[data-file='" + targetAttr + "']"); 
+    	var target = $("li[data-file='" + targetAttr + "']");
+    	
+    	$.ajax({
+    	      url: '/upload/delete',
+    	      data: {fileName:targetAttr},
+    	      dataType:'json',
+    	      type: 'POST',
+    	      success: function(result){
+    	      }
+    	});
+    	
     	target.remove();
 		
 	});
