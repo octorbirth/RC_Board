@@ -75,10 +75,10 @@ public class BoardController {
 		// 객체를 따로 보내지 않으면 자동으로 앞 글자를 소문자로 해서 처리한다.
 	}
 	@PostMapping("/remove")
-	public String remove(RedirectAttributes rttr, BoardDTO dto) {
+	public String remove(RedirectAttributes rttr, BoardDTO dto, @ModelAttribute("cri") SearchCriteria cri) {
 		service.remove(dto.getBno());
 		rttr.addFlashAttribute("result", "delsuccess");
-		return "redirect:/board/list";
+		return "redirect:/board/list" + cri.getURI();
 	}
 	
 	@GetMapping("/listMentee")
