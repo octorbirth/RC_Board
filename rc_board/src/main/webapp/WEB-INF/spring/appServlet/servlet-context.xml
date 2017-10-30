@@ -36,6 +36,8 @@
     <interceptors>
         <interceptor>
             <mapping path="/board/*"/>
+            <mapping path="/profile/*"/>
+            <mapping path="/attend/*"/>
             <beans:ref bean="login"/>
         </interceptor>
         <interceptor>
