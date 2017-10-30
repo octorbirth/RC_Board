@@ -9,6 +9,7 @@ import org.rc.mapper.AttendMapper;
 import org.rc.mapper.MemberMapper;
 import org.rc.vo.MemberVO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.java.Log;
 
@@ -50,6 +51,7 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.getInfo(dto);
 	}
 
+	@Transactional
 	@Override
 	public void updateInfo(MemberDTO dto) {
 		mapper.updateInfo(dto);

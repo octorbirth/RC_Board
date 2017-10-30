@@ -23,6 +23,7 @@ public class ReplyServiceImpl implements ReplyService {
     public List<ReplyDTO> getListReply(ReplyDTO dto) {        
         return mapper.listReply(dto);
     }
+	
 	@Transactional
 	@Override
 	 public void reRegister(ReplyDTO dto) {
@@ -30,12 +31,14 @@ public class ReplyServiceImpl implements ReplyService {
         mapper.reinsert(dto);
         mapper.reupdate();
 	 }
+	
 	@Transactional
 	@Override
 	public void rereRegister(ReplyDTO dto) {
 		boardMapper.upreplycnt(dto.getBno());
 		mapper.rereinsert(dto);
 	}
+	
 	@Transactional
 	@Override
     public void remove(Long rno, Long bno) {

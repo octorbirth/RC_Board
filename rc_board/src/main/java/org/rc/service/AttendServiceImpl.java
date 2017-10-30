@@ -11,6 +11,7 @@ import org.rc.mapper.AttendMapper;
 import org.rc.mapper.BoardMapper;
 import org.rc.mapper.LectureMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.java.Log;
 
@@ -23,6 +24,7 @@ public class AttendServiceImpl implements AttendService {
 	@Inject
 	private LectureMapper lectureMapper;
 	
+	@Transactional
 	@Override
 	public void create(AttendDTO dto) {
 		lectureMapper.create(dto.getCount());
@@ -40,6 +42,7 @@ public class AttendServiceImpl implements AttendService {
 		return mapper.getView(lno);
 	}
 
+	@Transactional
 	@Override
 	public void modify(AttendDTO dto) {
 		lectureMapper.updateAmount(dto.getCount(), dto.getLno());
